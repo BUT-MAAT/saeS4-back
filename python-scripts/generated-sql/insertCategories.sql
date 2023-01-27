@@ -1,6 +1,12 @@
---------------------------------------------------------
----------------------- CATEGORIES ----------------------
---------------------------------------------------------
+-- --------------------------------------------------------
+-- --------------------- RESET TABLES ---------------------
+-- --------------------------------------------------------
+DELETE FROM SOUSSOUSCATEGORIE;
+DELETE FROM SOUSCATEGORIE;
+DELETE FROM CATEGORIE;
+-- --------------------------------------------------------
+-- ---------------------- CATEGORIES ----------------------
+-- --------------------------------------------------------
 INSERT INTO CATEGORIE(IdCategorie, NomCategorie) VALUES(1,'entrées et plats composés');
 INSERT INTO CATEGORIE(IdCategorie, NomCategorie) VALUES(2,'fruits, légumes, légumineuses et oléagineux');
 INSERT INTO CATEGORIE(IdCategorie, NomCategorie) VALUES(3,'pâtes diverses, produits céréaliers');
@@ -12,9 +18,9 @@ INSERT INTO CATEGORIE(IdCategorie, NomCategorie) VALUES(8,'glaces et sorbets');
 INSERT INTO CATEGORIE(IdCategorie, NomCategorie) VALUES(9,'matières grasses');
 INSERT INTO CATEGORIE(IdCategorie, NomCategorie) VALUES(10,'aides culinaires et ingrédients divers');
 INSERT INTO CATEGORIE(IdCategorie, NomCategorie) VALUES(11,'aliments infantiles');
---------------------------------------------------------
-------------------- CHILD CATEGORIES -------------------
---------------------------------------------------------
+-- --------------------------------------------------------
+-- ------------------- CHILD CATEGORIES -------------------
+-- --------------------------------------------------------
 INSERT INTO SOUSCATEGORIE(IdCategorie, IdSousCategorie, NomSousCategorie) VALUES(1,103,'plats composés');
 INSERT INTO SOUSCATEGORIE(IdCategorie, IdSousCategorie, NomSousCategorie) VALUES(1,106,'feuilletées et autres entrées');
 INSERT INTO SOUSCATEGORIE(IdCategorie, IdSousCategorie, NomSousCategorie) VALUES(1,102,'soupes');
@@ -78,13 +84,13 @@ INSERT INTO SOUSCATEGORIE(IdCategorie, IdSousCategorie, NomSousCategorie) VALUES
 INSERT INTO SOUSCATEGORIE(IdCategorie, IdSousCategorie, NomSousCategorie) VALUES(11,1101,'laits et boissons infantiles');
 INSERT INTO SOUSCATEGORIE(IdCategorie, IdSousCategorie, NomSousCategorie) VALUES(11,1103,'desserts infantiles');
 INSERT INTO SOUSCATEGORIE(IdCategorie, IdSousCategorie, NomSousCategorie) VALUES(11,1102,'petits pots salés et plats infantiles');
---------------------------------------------------------
----------------- CHILD CHILD CATEGORIES ----------------
---------------------------------------------------------
+-- --------------------------------------------------------
+-- ---------------- CHILD CHILD CATEGORIES ----------------
+-- --------------------------------------------------------
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(103,10308,'plats de fromage');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(103,10309,'plats végétariens');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(103,10306,'plats de légumes/légumineuses');
-INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(,0,'Non spécialisable');
+INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(106,10600,'Non spécialisable');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(103,10301,'plats de viande sans garniture');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(103,10307,'plats de céréales/pâtes');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(103,10303,'plats de viande et légumes/légumineuses');
@@ -111,21 +117,21 @@ INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousC
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(302,30202,'biscottes et pains grillés');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(301,30101,'pâtes, riz et céréales cuits');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(305,30502,'pâtes');
-INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40208,'abats');
+INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(401,40108,'abats');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(401,40105,'agneau et mouton casher');
-INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40205,'agneau et mouton');
+INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40205,'agneau et mouton casher');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(403,40308,'autres spécialités charcutières');
-INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(401,40107,'autres viandes');
+INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40107,'autres viandes');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40201,'bœuf et veau');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(401,40101,'bœuf et veau halal');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40207,'autres viandes casher');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40206,'gibier');
-INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(401,40108,'abats halal');
+INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40208,'abats');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(403,40304,'saucisses et assimilés');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(403,40305,'pâtés et terrines');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(403,40302,'jambons secs et crus');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(403,40301,'jambons cuits');
-INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(401,40104,'dinde casher');
+INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40104,'dinde casher');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40204,'dinde');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(401,40106,'gibier casher');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(410,41002,'œufs crus');
@@ -134,7 +140,7 @@ INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousC
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40202,'porc cru');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(401,40102,'porc');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40203,'poulet');
-INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(401,40103,'poulet halal');
+INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(402,40103,'poulet halal');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(403,40309,'substituts de charcuteries pour végétariens');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(403,40307,'quenelles');
 INSERT INTO SOUSSOUSCATEGORIE(IdSousCategorie, IdSousSousCategorie, NomSousSousCategorie) VALUES(403,40306,'rillettes');
