@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le : dim. 29 jan. 2023 à 17:03
+-- Généré le : dim. 29 jan. 2023 à 18:42
 -- Version du serveur : 10.4.13-MariaDB-1:10.4.13+maria~focal
 -- Version de PHP : 8.0.19
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `saes4`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ALIMENT`
+--
+
+CREATE TABLE `ALIMENT` (
+  `IdAliment` int(11) NOT NULL,
+  `NomAliment` varchar(30) DEFAULT NULL,
+  `IdValeursNutritives` int(11) DEFAULT NULL,
+  `IdSousSousCategorie` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -284,9 +297,91 @@ INSERT INTO `SOUSSOUSCATEGORIE` (`IdSousSousCategorie`, `IdSousCategorie`, `NomS
 (110300, 1103, 'Non sp?cialisable'),
 (110400, 1104, 'Non sp?cialisable');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `VALEURS_NUTRITIVES`
+--
+
+CREATE TABLE `VALEURS_NUTRITIVES` (
+  `IdValeursNutritives` int(11) NOT NULL,
+  `EnergieUE_kj` float DEFAULT NULL,
+  `EnergieUE_kcal` float DEFAULT NULL,
+  `EnergieJones_kj` float DEFAULT NULL,
+  `EnergieJones_kcal` float DEFAULT NULL,
+  `Eau` float DEFAULT NULL,
+  `ProteinesJones` float DEFAULT NULL,
+  `Proteines625` float DEFAULT NULL,
+  `Glucides` float DEFAULT NULL,
+  `Lipides` float DEFAULT NULL,
+  `Sucres` float DEFAULT NULL,
+  `Fructose` float DEFAULT NULL,
+  `Galactose` float DEFAULT NULL,
+  `Glucose` float DEFAULT NULL,
+  `Lactose` float DEFAULT NULL,
+  `Maltose` float DEFAULT NULL,
+  `Saccharose` float DEFAULT NULL,
+  `Amidon` float DEFAULT NULL,
+  `FibresAlimentaires` float DEFAULT NULL,
+  `PolyolsTotaux` float DEFAULT NULL,
+  `Cendres` float DEFAULT NULL,
+  `Alcool` float DEFAULT NULL,
+  `AcidesOrganiques` float DEFAULT NULL,
+  `AGSatures` float DEFAULT NULL,
+  `AGMonoinsatures` float DEFAULT NULL,
+  `AGPolyinsatures` float DEFAULT NULL,
+  `AGButriques` float DEFAULT NULL,
+  `AGCaproique` float DEFAULT NULL,
+  `AGCaprylique` float DEFAULT NULL,
+  `AGCaprique` float DEFAULT NULL,
+  `AGLaurique` float DEFAULT NULL,
+  `AGMyristique` float DEFAULT NULL,
+  `AGPalmitique` float DEFAULT NULL,
+  `AGSteraique` float DEFAULT NULL,
+  `AGOleique` float DEFAULT NULL,
+  `AGLinoleique` float DEFAULT NULL,
+  `AGAlphaLinoleique` float DEFAULT NULL,
+  `AGArachidonique` float DEFAULT NULL,
+  `AGEPA` float DEFAULT NULL,
+  `AGDHA` float DEFAULT NULL,
+  `Cholesterol` float DEFAULT NULL,
+  `Sel` float DEFAULT NULL,
+  `Calcium` float DEFAULT NULL,
+  `Chlorure` float DEFAULT NULL,
+  `Cuivre` float DEFAULT NULL,
+  `Fer` float DEFAULT NULL,
+  `Iode` float DEFAULT NULL,
+  `Magnesium` float DEFAULT NULL,
+  `Manganese` float DEFAULT NULL,
+  `Phosphore` float DEFAULT NULL,
+  `Potassium` float DEFAULT NULL,
+  `Selenium` float DEFAULT NULL,
+  `Sodium` float DEFAULT NULL,
+  `Zinc` float DEFAULT NULL,
+  `Retinol` float DEFAULT NULL,
+  `BetaCarotene` float DEFAULT NULL,
+  `VitamineD` float DEFAULT NULL,
+  `VitamineE` float DEFAULT NULL,
+  `VitamineK1` float DEFAULT NULL,
+  `VitamineK2` float DEFAULT NULL,
+  `VitamineC` float DEFAULT NULL,
+  `VitamineB1` float DEFAULT NULL,
+  `VitamineB2` float DEFAULT NULL,
+  `VitamineB3` float DEFAULT NULL,
+  `VitamineB5` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `ALIMENT`
+--
+ALTER TABLE `ALIMENT`
+  ADD PRIMARY KEY (`IdAliment`),
+  ADD KEY `FK_Aliment_ValeursNutritives` (`IdValeursNutritives`),
+  ADD KEY `FK_Aliment_Soussouscategorie` (`IdSousSousCategorie`);
 
 --
 -- Index pour la table `CATEGORIE`
@@ -309,8 +404,21 @@ ALTER TABLE `SOUSSOUSCATEGORIE`
   ADD KEY `FK_SousSousCategorie_SousCategorie` (`IdSousCategorie`);
 
 --
+-- Index pour la table `VALEURS_NUTRITIVES`
+--
+ALTER TABLE `VALEURS_NUTRITIVES`
+  ADD PRIMARY KEY (`IdValeursNutritives`);
+
+--
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `ALIMENT`
+--
+ALTER TABLE `ALIMENT`
+  ADD CONSTRAINT `FK_Aliment_Soussouscategorie` FOREIGN KEY (`IdSousSousCategorie`) REFERENCES `SOUSSOUSCATEGORIE` (`IdSousSousCategorie`),
+  ADD CONSTRAINT `FK_Aliment_ValeursNutritives` FOREIGN KEY (`IdValeursNutritives`) REFERENCES `VALEURS_NUTRITIVES` (`IdValeursNutritives`);
 
 --
 -- Contraintes pour la table `SOUSCATEGORIE`

@@ -25,17 +25,6 @@ CREATE OR REPLACE TABLE SOUSSOUSCATEGORIE (
         FOREIGN KEY (IdSousCategorie) REFERENCES SOUSCATEGORIE(IdSousCategorie)
 );
 
-CREATE OR REPLACE TABLE ALIMENT (
-    IdAliment INTEGER PRIMARY KEY,
-    NomAliment VARCHAR(30),
-    IdValeursNutritives INTEGER,
-    IdSousSousCategorie INTEGER,
-    CONSTRAINT FK_Aliment_ValeursNutritives
-        FOREIGN KEY (IdValeursNutritives) REFERENCES VALEURS_NUTRITIVES(IdValeursNutritives),
-    CONSTRAINT FK_Aliment_Soussouscategorie
-        FOREIGN KEY (IdSousSousCategorie) REFERENCES SOUSSOUSCATEGORIE(IdSousSousCategorie)
-);
-
 -- -1 = traces
 CREATE OR REPLACE TABLE VALEURS_NUTRITIVES (
     IdValeursNutritives INTEGER PRIMARY KEY,
@@ -103,4 +92,15 @@ CREATE OR REPLACE TABLE VALEURS_NUTRITIVES (
     VitamineB2 FLOAT,
     VitamineB3 FLOAT,
     VitamineB5 FLOAT
+);
+
+CREATE OR REPLACE TABLE ALIMENT (
+    IdAliment INTEGER PRIMARY KEY,
+    NomAliment VARCHAR(30),
+    IdValeursNutritives INTEGER,
+    IdSousSousCategorie INTEGER,
+    CONSTRAINT FK_Aliment_ValeursNutritives
+        FOREIGN KEY (IdValeursNutritives) REFERENCES VALEURS_NUTRITIVES(IdValeursNutritives),
+    CONSTRAINT FK_Aliment_Soussouscategorie
+        FOREIGN KEY (IdSousSousCategorie) REFERENCES SOUSSOUSCATEGORIE(IdSousSousCategorie)
 );
