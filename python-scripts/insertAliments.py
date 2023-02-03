@@ -3,7 +3,7 @@
 import pandas as pd
 import utils as utils
 
-QUOTATION_MARK = '"'
+QUOTATION_MARK = "'"
 
 def convertFloat(value: str):
     if value == 'traces':
@@ -22,13 +22,13 @@ def getChildChildCategorie(excelFile, idx):
                 else '00')
 
 def main():
-    with open('generated-sql/insertAliments.sql', 'w') as file:
+    with open('generated-sql/insertAliments.sql', 'w', encoding="utf-8") as file:
         excelFile = pd.read_excel('Aliments.xlsx')
 
         # Delete existing data
-        utils.writeDelimitation(file, "RESET TABLES")
-        file.write("DELETE FROM ALIMENT;\n")
-        file.write("DELETE FROM VALEURS_NUTRITIVES;\n")
+        # utils.writeDelimitation(file, "RESET TABLES")
+        # file.write("DELETE FROM ALIMENT;\n")
+        # file.write("DELETE FROM VALEURS_NUTRITIVES;\n")
 
         # We insert data in valeurs nutritives then in aliments
         utils.writeDelimitation(file, "VALEURS_NUTRITIVES -> ALIMENT")
@@ -113,9 +113,9 @@ def main():
                        f");\n")
 
             file.write(f"INSERT INTO ALIMENT("
-                       f"IdAliment, NomAliment, IdValeursNutritives, IdSousSousCategorie)"
+                       f"id_aliment, nom_aliment, id_valeurs_nutritives, id_sous_sous_categorie)"
                        f"VALUES({excelFile['alim_code'][idx]}, "
-                       f"{QUOTATION_MARK}{excelFile['alim_nom_fr'][idx].replace(QUOTATION_MARK,'')}{QUOTATION_MARK}, "
+                       f"{QUOTATION_MARK}{excelFile['alim_nom_fr'][idx].replace(QUOTATION_MARK,' ')}{QUOTATION_MARK}, "
                        f"{excelFile['alim_code'][idx]}, "
                        f"{getChildChildCategorie(excelFile, idx)}"
                        f");\n")
