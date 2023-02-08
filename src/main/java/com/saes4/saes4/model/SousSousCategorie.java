@@ -11,14 +11,18 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "categorie")
-public class Categorie implements Serializable {
+@Table(name = "soussouscategorie")
+public class SousSousCategorie implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long id_categorie;
+    private Long id_sous_sous_categorie;
 
-    private String nom_categorie;
+    private String nom_sous_sous_categorie;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_sous_categorie")
+    private SousCategorie categorie_parent;
 }
