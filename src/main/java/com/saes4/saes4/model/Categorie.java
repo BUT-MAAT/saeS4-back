@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.io.Serializable;
 
@@ -20,8 +19,7 @@ public class Categorie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categorie", unique = true, nullable = false)
-    private Long idCategorie;
+    private Long id_categorie;
 
-    @Column(name = "nom_categorie")
-    private String nomCategorie;
+    private String nom_categorie;
 }
