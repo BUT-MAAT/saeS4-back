@@ -5,12 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @Table(name = "aliment")
-public class Aliment {
+public class Aliment implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -20,7 +22,9 @@ public class Aliment {
 
     private String nom_aliment;
 
-    private Long id_valeurs_nutritives;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_valeurs_nutritives")
+    private ValeursNutritives valeurs_nutritives;
 
     private Long id_sous_sous_categorie;
 }
