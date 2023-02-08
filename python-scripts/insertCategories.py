@@ -17,7 +17,7 @@ def main():
         for idx in categories.index:
             file.write(f"INSERT INTO CATEGORIE(id_categorie, nom_categorie) "
                        f"VALUES({categories['alim_grp_code'][idx]},"
-                       f"'{categories['alim_grp_nom_fr'][idx]}');\n")
+                       f"'{categories['alim_grp_nom_fr'][idx].capitalize()}');\n")
         print("[DONE] - Script categories done")
 
         # Child categories
@@ -27,7 +27,7 @@ def main():
             file.write(f"INSERT INTO SOUSCATEGORIE(id_categorie, id_sous_categorie, nom_sous_categorie) "
                        f"VALUES({str(child_categories['alim_ssgrp_code'][idx])[:-2]},"
                        f"{str(child_categories['alim_ssgrp_code'][idx])},"
-                       f"'{child_categories['alim_ssgrp_nom_fr'][idx]}');\n")
+                       f"'{child_categories['alim_ssgrp_nom_fr'][idx].capitalize()}');\n")
         print("[DONE] - Script childcategories done")
 
         # Child-child categories
@@ -40,7 +40,7 @@ def main():
                 file.write(f"INSERT INTO SOUSSOUSCATEGORIE(id_sous_categorie, id_sous_sous_categorie, nom_sous_sous_categorie) "
                        f"VALUES({ str(child_child_categories['alim_ssgrp_code'][idx]) },"
                        f"{ str(child_child_categories['alim_ssgrp_code'][idx]) + '00' if child_child_categories['alim_ssssgrp_code'][idx] == 0 else str(child_child_categories['alim_ssssgrp_code'][idx]) },"
-                       f"'{ child_child_categories['alim_ssssgrp_nom_fr'][idx] }');\n")
+                       f"'{ child_child_categories['alim_ssssgrp_nom_fr'][idx].capitalize() }');\n")
         print("[DONE] - Script childchildcategories done")
 
 main()
