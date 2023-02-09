@@ -21,4 +21,12 @@ public class CategorieService {
                 .filter((categorie -> categorie.getType_categorie() == TYPE_CATEGORIE.CATEGORIE))
                 .toList();
     }
+
+    public List<Categorie> getCategoriesByParentId(Long parent_id) {
+        return categorieRepository.findAll()
+                .stream()
+                .filter((categorie -> categorie.getType_categorie() != TYPE_CATEGORIE.CATEGORIE
+                        && categorie.getCategorie_parent().getId_categorie().equals(parent_id)))
+                .toList();
+    }
 }

@@ -28,7 +28,7 @@ public class Categorie implements Serializable {
     private TYPE_CATEGORIE type_categorie;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_categorie")
+    @JoinColumn(name = "id_categorie_parent")
     @JsonBackReference
     private Categorie categorie_parent;
 }
