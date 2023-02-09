@@ -1,6 +1,7 @@
 package com.saes4.saes4.service;
 
 import com.saes4.saes4.model.Categorie;
+import com.saes4.saes4.model.enums.TYPE_CATEGORIE;
 import com.saes4.saes4.repository.CategorieRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,17 @@ public class CategorieService {
     CategorieRepository categorieRepository;
 
     public List<Categorie> getAllCategories() {
-        return categorieRepository.findAll();
+        return categorieRepository.findAll()
+                .stream()
+                .filter((categorie -> categorie.getType_categorie() == TYPE_CATEGORIE.CATEGORIE))
+                .toList();
+    }
+
+    public List<Categorie> getCategoriesByParentId(Long parent_id) {
+        return categorieRepository.findAll()
+                .stream()
+                .filter((categorie -> categorie.getType_categorie() != TYPE_CATEGORIE.CATEGORIE
+                        && categorie.getCategorie_parent().getId_categorie().equals(parent_id)))
+                .toList();
     }
 }
