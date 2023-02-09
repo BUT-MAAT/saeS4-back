@@ -3,7 +3,7 @@
 import pandas as pd
 import utils as utils
 
-QUOTATION_MARK = '"'
+QUOTATION_MARK = "'"
 
 def convertFloat(value: str):
     if value == 'traces':
@@ -22,29 +22,29 @@ def getChildChildCategorie(excelFile, idx):
                 else '00')
 
 def main():
-    with open('generated-sql/insertAliments.sql', 'w') as file:
+    with open('generated-sql/insertAliments.sql', 'w', encoding="utf-8") as file:
         excelFile = pd.read_excel('Aliments.xlsx')
 
         # Delete existing data
-        utils.writeDelimitation(file, "RESET TABLES")
-        file.write("DELETE FROM ALIMENT;\n")
-        file.write("DELETE FROM VALEURS_NUTRITIVES;\n")
+        # utils.writeDelimitation(file, "RESET TABLES")
+        # file.write("DELETE FROM ALIMENT;\n")
+        # file.write("DELETE FROM VALEURS_NUTRITIVES;\n")
 
         # We insert data in valeurs nutritives then in aliments
         utils.writeDelimitation(file, "VALEURS_NUTRITIVES -> ALIMENT")
         for idx in excelFile.index:
             print(excelFile['alim_code'][idx])
             utils.writeSmallDelimitation(file, f"{excelFile['alim_code'][idx]} - {excelFile['alim_nom_fr'][idx]}");
-            file.write(f"INSERT INTO VALEURS_NUTRITIVES("
-                       f"IdValeursNutritives, EnergieUE_kj, EnergieUE_kcal, EnergieJones_kj, EnergieJones_kcal, "
-                       f"Eau, ProteinesJones, Proteines625, Glucides, Lipides, Sucres, Fructose, Galactose, "
-                       f"Glucose, Lactose, Maltose, Saccharose, Amidon, FibresAlimentaires, PolyolsTotaux, Cendres, "
-                       f"Alcool, AcidesOrganiques, AGSatures, AGMonoinsatures, AGPolyinsatures, AGButriques, "
-                       f"AGCaproique, AGCaprylique, AGCaprique, AGLaurique, AGMyristique, AGPalmitique, AGSteraique, "
-                       f"AGOleique, AGLinoleique, AGAlphaLinoleique, AGArachidonique, AGEPA, AGDHA, Cholesterol, "
-                       f"Sel, Calcium, Chlorure, Cuivre, Fer, Iode, Magnesium, Manganese, Phosphore, Potassium, "
-                       f"Selenium, Sodium, Zinc, Retinol, BetaCarotene, VitamineD, VitamineE, VitamineK1, "
-                       f"VitamineK2, VitamineC, VitamineB1, VitamineB2, VitamineB3, VitamineB5) "
+            file.write(f"INSERT INTO valeurs_nutritives("
+                       f"id_valeurs_nutritives, energie_ue_kj, energie_ue_kcal, energie_jones_kj, energie_jones_kcal, "
+                       f"eau, proteines_jones, proteines_625, glucides, lipides, sucres, fructose, galactose, "
+                       f"glucose, lactose, maltose, saccharose, amidon, fibres_alimentaires, polyols_totaux, cendres, "
+                       f"alcool, acides_organiques, ag_satures, ag_monoinsatures, ag_polyinsatures, ag_butriques, "
+                       f"ag_caproique, ag_caprylique, ag_caprique, ag_laurique, ag_myristique, ag_palmitique, ag_steraique, "
+                       f"ag_oleique, ag_linoleique, ag_alpha_linoleique, ag_arachidonique, ag_epa, ag_dha, cholesterol, "
+                       f"sel, calcium, chlorure, cuivre, fer, iode, magnesium, manganese, phosphore, potassium, "
+                       f"selenium, sodium, zinc, retinol, beta_carotene, vitamine_d, vitamine_e, vitamine_k1, "
+                       f"vitamine_k2, vitamine_c, vitamine_b1, vitamine_b2, vitamine_b3, vitamine_b5) "
                        f"VALUES({excelFile['alim_code'][idx]}, "
                        f"{convertFloat(str(excelFile['Energie, Règlement UE N° 1169/2011 (kJ/100 g)'][idx]))}, "
                        f"{convertFloat(str(excelFile['Energie, Règlement UE N° 1169/2011 (kcal/100 g)'][idx]))}, "
@@ -113,9 +113,9 @@ def main():
                        f");\n")
 
             file.write(f"INSERT INTO ALIMENT("
-                       f"IdAliment, NomAliment, IdValeursNutritives, IdSousSousCategorie)"
+                       f"id_aliment, nom_aliment, id_valeurs_nutritives, id_sous_sous_categorie)"
                        f"VALUES({excelFile['alim_code'][idx]}, "
-                       f"{QUOTATION_MARK}{excelFile['alim_nom_fr'][idx].replace(QUOTATION_MARK,'')}{QUOTATION_MARK}, "
+                       f"{QUOTATION_MARK}{excelFile['alim_nom_fr'][idx].replace(QUOTATION_MARK,' ')}{QUOTATION_MARK}, "
                        f"{excelFile['alim_code'][idx]}, "
                        f"{getChildChildCategorie(excelFile, idx)}"
                        f");\n")
