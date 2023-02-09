@@ -21,6 +21,7 @@ Endpoint global : `/categories`
 > Les sous sous catégories sont une sous catégorie des sous catégories qui elles 
 > même sont une sous catégorie de catégorie.
 
+
 - ### Get all categories (CATEGORIE) : [/categorie/all](http://localhost:9000/api/categories/categorie/all)
 
 Paramètres : `aucun`
@@ -36,6 +37,7 @@ Renvoie toutes les catégories (CATEGORIE) dans la base :
 ]
 ```
 > Exemple d'appel : http://localhost:9000/api/categories/categorie/all
+
 
 - ### Get categories by parent : [/by_parent](http://localhost:9000/api/categories/by_parent?parent_id=1)
 
@@ -59,6 +61,7 @@ Renvoie toutes les catégories dont la catégorie parent est celle dont l'id a �
 
 Endpoint global : `/aliment`
 
+
 - ### **Get all :** [/all](http://localhost:9000/api/aliment/all)
 
 Paramètres : `aucun`
@@ -75,6 +78,7 @@ Renvoie tous les aliments en base en suivant le format suivant :
 ```
 > Exemple d'appel : http://localhost:9000/api/aliment/all
 
+
 - ### **Get by sous sous categorie :** [/by_soussouscategorie](http://localhost:9000/api/aliment/by_soussouscategorie?soussouscategorie_id=10100)
 
 Paramètres : `soussouscategorie_id : number`
@@ -90,6 +94,7 @@ Renvoie les aliments en base qui sont de la sous sous categorie dont l'id a ét�
 ]
 ```
 > Exemple d'appel : http://localhost:9000/api/aliment/by_soussouscategorie?soussouscategorie_id=10100
+
 
 - ### **Get valeurs nutrionelles d'un aliment :** [/valeurs_nutritives](http://localhost:9000/api/aliment/valeurs_nutritives?aliment_id=1000)
 
