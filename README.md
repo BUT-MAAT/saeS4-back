@@ -171,6 +171,6 @@ Renvoie les valeurs nutritionnelles de l'aliment dont l'id a été passé en par
   "vitamine_b5": 0.0
 }
 ```
-==**ATTENTION :**== *Si la valeur retournée pour un champ vaut `-1`, alors c'est qu'il existe des traces de ce nutriment*
+**ATTENTION :** *Si la valeur retournée pour un champ vaut `-1`, alors c'est qu'il existe des traces de ce nutriment*
 
 > Exemple d'appel : http://localhost:9000/api/aliment/valeurs_nutritives?aliment_id=1000
