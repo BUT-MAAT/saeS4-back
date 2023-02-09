@@ -1,5 +1,7 @@
 package com.saes4.saes4.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.saes4.saes4.model.enums.TYPE_CATEGORIE;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,4 +23,12 @@ public class Categorie implements Serializable {
     private Long id_categorie;
 
     private String nom_categorie;
+
+    @Enumerated(EnumType.STRING)
+    private TYPE_CATEGORIE type_categorie;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_categorie_parent")
+    @JsonBackReference
+    private Categorie categorie_parent;
 }
