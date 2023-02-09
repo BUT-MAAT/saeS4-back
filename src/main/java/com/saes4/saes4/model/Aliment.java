@@ -22,9 +22,5 @@ public class Aliment implements Serializable {
 
     private String nom_aliment;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_valeurs_nutritives")
-    private ValeursNutritives valeurs_nutritives;
-
     private Long id_sous_sous_categorie;
 }
