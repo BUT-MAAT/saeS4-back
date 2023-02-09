@@ -1,28 +1,14 @@
-DROP TABLE SOUSSOUSCATEGORIE;
-DROP TABLE SOUSCATEGORIE;
 DROP TABLE CATEGORIE;
 DROP TABLE VALEURS_NUTRITIVES;
 DROP TABLE ALIMENT;
 
 CREATE OR REPLACE TABLE CATEGORIE (
     id_categorie INTEGER PRIMARY KEY,
-    nom_categorie VARCHAR(60)
-);
-
-CREATE OR REPLACE TABLE SOUSCATEGORIE (
-    id_sous_categorie INTEGER PRIMARY KEY,
-    id_categorie INTEGER,
-    nom_sous_categorie VARCHAR(60),
-    CONSTRAINT FK_SousCategorie_Categorie
-        FOREIGN KEY (id_categorie) REFERENCES CATEGORIE(id_categorie)
-);
-
-CREATE OR REPLACE TABLE SOUSSOUSCATEGORIE (
-    id_sous_sous_categorie INTEGER PRIMARY KEY,
-    id_sous_categorie INTEGER,
-    nom_sous_sous_categorie VARCHAR(60),
-    CONSTRAINT FK_SousSousCategorie_SousCategorie
-        FOREIGN KEY (id_sous_categorie) REFERENCES SOUSCATEGORIE(id_sous_categorie)
+    nom_categorie VARCHAR(60),
+    type_categorie VARCHAR(17),
+    id_categorie_parent INTEGER,
+    CONSTRAINT FK_Categorie_CategorieParent
+        FOREIGN KEY (id_categorie_parent) REFERENCES CATEGORIE(id_categorie)
 );
 
 -- -1 = traces
@@ -102,5 +88,5 @@ CREATE OR REPLACE TABLE ALIMENT (
     CONSTRAINT FK_Aliment_ValeursNutritives
         FOREIGN KEY (id_valeurs_nutritives) REFERENCES VALEURS_NUTRITIVES(id_valeurs_nutritives),
     CONSTRAINT FK_Aliment_Soussouscategorie
-        FOREIGN KEY (id_sous_sous_categorie) REFERENCES SOUSSOUSCATEGORIE(id_sous_sous_categorie)
+        FOREIGN KEY (id_sous_sous_categorie) REFERENCES CATEGORIE(id_categorie)
 );
