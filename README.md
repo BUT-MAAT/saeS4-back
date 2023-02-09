@@ -47,9 +47,9 @@ Renvoie toutes les catégories dont la catégorie parent est celle dont l'id a �
 ```json
 [
   {
-    "id_categorie":101,
-    "nom_categorie":"Salades composées et crudités",
-    "type_categorie":"SOUSCATEGORIE"
+    "id_categorie": 101,
+    "nom_categorie": "Salades composées et crudités",
+    "type_categorie": "SOUSCATEGORIE"
   }
 ]
 ```
