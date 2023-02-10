@@ -22,5 +22,6 @@ public class Aliment implements Serializable {
 
     private String nom_aliment;
 
+
     private Long id_sous_sous_categorie;
 }
