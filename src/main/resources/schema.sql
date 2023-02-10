@@ -85,8 +85,6 @@ CREATE OR REPLACE TABLE ALIMENT (
         FOREIGN KEY (id_valeurs_nutritives) REFERENCES VALEURS_NUTRITIVES(id_valeurs_nutritives),
     CONSTRAINT FK_Aliment_Soussouscategorie
         FOREIGN KEY (id_sous_sous_categorie) REFERENCES CATEGORIE(id_categorie)
-<<<<<<< Updated upstream
-=======
 );
 
 CREATE OR REPLACE TABLE SONDAGE (
@@ -103,5 +101,4 @@ CREATE TABLE CHOIX_ALIMENTS_SONDAGE(
    PRIMARY KEY(id_aliment, id_personne),
    FOREIGN KEY(id_aliment) REFERENCES ALIMENT(id_aliment),
    FOREIGN KEY(id_personne) REFERENCES SONDAGE(id_personne)
->>>>>>> Stashed changes
 );
