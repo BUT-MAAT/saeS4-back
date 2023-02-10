@@ -1,4 +1,4 @@
-CREATE OR REPLACE TABLE CATEGORIE (
+CREATE TABLE CATEGORIE (
     id_categorie INTEGER PRIMARY KEY,
     nom_categorie VARCHAR(60),
     type_categorie VARCHAR(17),
@@ -8,7 +8,7 @@ CREATE OR REPLACE TABLE CATEGORIE (
 );
 
 -- -1 = traces
-CREATE OR REPLACE TABLE VALEURS_NUTRITIVES (
+CREATE TABLE VALEURS_NUTRITIVES (
     id_valeurs_nutritives INTEGER PRIMARY KEY,
     energie_ue_kj FLOAT,
     energie_ue_kcal FLOAT,
@@ -76,7 +76,7 @@ CREATE OR REPLACE TABLE VALEURS_NUTRITIVES (
     vitamine_b5 FLOAT
 );
 
-CREATE OR REPLACE TABLE ALIMENT (
+CREATE TABLE ALIMENT (
     id_aliment INTEGER PRIMARY KEY,
     nom_aliment VARCHAR(250),
     id_valeurs_nutritives INTEGER,
@@ -87,18 +87,23 @@ CREATE OR REPLACE TABLE ALIMENT (
         FOREIGN KEY (id_sous_sous_categorie) REFERENCES CATEGORIE(id_categorie)
 );
 
-CREATE OR REPLACE TABLE SONDAGE (
+CREATE TABLE SONDAGE (
    id_personne INTEGER PRIMARY KEY,
-   nom VARCHAR(50),
-   prenom VARCHAR(50),
-   mail VARCHAR(50),
+   nom VARCHAR(30),
+   prenom VARCHAR(30),
+   mail VARCHAR(30),
+   code_postal VARCHAR(5),
+   ville VARCHAR(30),
+   date_reponse DATE,
    CONSTRAINT U_Mail_Sondage UNIQUE(mail)
 );
 
-CREATE TABLE CHOIX_ALIMENTS_SONDAGE(
+CREATE TABLE CHOIX_ALIMENTS_SONDAGE (
    id_aliment INTEGER,
    id_personne INTEGER,
    PRIMARY KEY(id_aliment, id_personne),
    FOREIGN KEY(id_aliment) REFERENCES ALIMENT(id_aliment),
    FOREIGN KEY(id_personne) REFERENCES SONDAGE(id_personne)
 );
+
+CREATE SEQUENCE SONDAGE_SEQ;

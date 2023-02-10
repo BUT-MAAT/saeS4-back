@@ -18,7 +18,6 @@ public class ValeursNutritives implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @PrimaryKeyJoinColumn(name = "id_valeurs_nutritives")
     private Long id_valeurs_nutritives;
-
     private Double energie_ue_kj;
     private Double energie_ue_kcal;
     private Double energie_jones_kj;
