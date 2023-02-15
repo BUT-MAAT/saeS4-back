@@ -12,19 +12,27 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface AlimentMapper {
-    @Named("noValeursNutritives")
+    @Named("alimentToAlimentDTONoValeursNutritives")
     @Mapping(target = "valeurs_nutritives", ignore = true)
-    AlimentDTO noValeursNutritives(Aliment aliment);
+    AlimentDTO alimentToAlimentDTONoValeursNutritives(Aliment aliment);
 
-    @Named("withValeursNutritives")
+    @Named("alimentToAlimentDTOWithValeursNutritives")
     @Mapping(target = "valeurs_nutritives", ignore = false)
-    AlimentDTO withValeursNutritives(Aliment aliment);
+    AlimentDTO alimentToAlimentDTOWithValeursNutritives(Aliment aliment);
 
-    @Named("noValeursNutritivesList")
-    @IterableMapping(qualifiedByName="noValeursNutritives")
-    List<AlimentDTO> noValeursNutritivesList(List<Aliment> aliments);
+    @Named("alimentDTOToAlimentWithValeursNutritives")
+    @Mapping(target = "valeurs_nutritives", ignore = false)
+    Aliment alimentDTOToAlimentWithValeursNutritives(AlimentDTO aliment);
 
-    @Named("withValeursNutritivesList")
-    @IterableMapping(qualifiedByName="withValeursNutritives")
-    List<AlimentDTO> withValeursNutritivesList(List<Aliment> aliments);
+    @Named("alimentToAlimentDTONoValeursNutritivesList")
+    @IterableMapping(qualifiedByName="alimentToAlimentDTONoValeursNutritives")
+    List<AlimentDTO> alimentToAlimentDTONoValeursNutritivesList(List<Aliment> aliments);
+
+    @Named("alimentToAlimentDTOWithValeursNutritivesList")
+    @IterableMapping(qualifiedByName="alimentToAlimentDTOWithValeursNutritives")
+    List<AlimentDTO> alimentToAlimentDTOWithValeursNutritivesList(List<Aliment> aliments);
+
+    @Named("alimentDTOToAlimentWithValeursNutritivesList")
+    @IterableMapping(qualifiedByName="alimentDTOToAlimentWithValeursNutritives")
+    List<Aliment> alimentDTOToAlimentWithValeursNutritivesList(List<AlimentDTO> aliments);
 }
