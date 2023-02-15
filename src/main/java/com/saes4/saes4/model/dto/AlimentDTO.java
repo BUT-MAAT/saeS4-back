@@ -16,5 +16,5 @@ public class AlimentDTO {
 
     private Long id_sous_sous_categorie;
 
-    private ValeursNutritives valeurs_nutritives;
+    private ValeursNutritivesDTO valeurs_nutritives;
 }

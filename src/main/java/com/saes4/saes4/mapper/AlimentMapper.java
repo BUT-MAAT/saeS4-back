@@ -10,18 +10,18 @@ import org.mapstruct.Named;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {ValeurNutritivesMapper.class})
 public interface AlimentMapper {
     @Named("alimentToAlimentDTONoValeursNutritives")
     @Mapping(target = "valeurs_nutritives", ignore = true)
     AlimentDTO alimentToAlimentDTONoValeursNutritives(Aliment aliment);
 
     @Named("alimentToAlimentDTOWithValeursNutritives")
-    @Mapping(target = "valeurs_nutritives", ignore = false)
+    @Mapping(target = "valeurs_nutritives", qualifiedByName = "valeursNutritivesToValeursNutritivesDTO")
     AlimentDTO alimentToAlimentDTOWithValeursNutritives(Aliment aliment);
 
     @Named("alimentDTOToAlimentWithValeursNutritives")
-    @Mapping(target = "valeurs_nutritives", ignore = false)
+    @Mapping(target = "valeurs_nutritives", qualifiedByName = "valeursNutritivesDTOToValeursNutritives")
     Aliment alimentDTOToAlimentWithValeursNutritives(AlimentDTO aliment);
 
     @Named("alimentToAlimentDTONoValeursNutritivesList")
