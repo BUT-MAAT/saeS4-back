@@ -27,7 +27,7 @@ public class AlimentService {
 
     public List<AlimentDTO> getAllAliments() {
         List<Aliment> aliments = alimentRepository.findAll();
-        return alimentMapper.noValeursNutritivesList(aliments);
+        return alimentMapper.alimentToAlimentDTONoValeursNutritivesList(aliments);
     }
 
 
@@ -36,7 +36,7 @@ public class AlimentService {
                 .stream()
                 .filter(aliment -> aliment.getId_sous_sous_categorie().equals(soussouscategorie_id))
                 .toList();
-        if (valeurs_nutritives) return alimentMapper.withValeursNutritivesList(aliments);
-        return alimentMapper.noValeursNutritivesList(aliments);
+        if (valeurs_nutritives) return alimentMapper.alimentToAlimentDTOWithValeursNutritivesList(aliments);
+        return alimentMapper.alimentToAlimentDTONoValeursNutritivesList(aliments);
     }
 }

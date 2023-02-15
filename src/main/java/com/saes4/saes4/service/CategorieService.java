@@ -25,7 +25,7 @@ public class CategorieService {
                 .stream()
                 .filter((categorie -> categorie.getType_categorie() == TYPE_CATEGORIE.CATEGORIE))
                 .toList();
-        return categorieMapper.categorieMapperList(categories);
+        return categorieMapper.categorieToCategorieDTOList(categories);
     }
 
     public List<CategorieDTO> getCategoriesByParentId(Long parent_id) {
@@ -34,6 +34,6 @@ public class CategorieService {
                 .filter((categorie -> categorie.getType_categorie() != TYPE_CATEGORIE.CATEGORIE
                         && categorie.getCategorie_parent().getId_categorie().equals(parent_id)))
                 .toList();
-        return categorieMapper.categorieMapperList(categories);
+        return categorieMapper.categorieToCategorieDTOList(categories);
     }
 }

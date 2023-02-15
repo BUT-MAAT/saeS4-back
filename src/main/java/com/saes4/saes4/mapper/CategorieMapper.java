@@ -13,11 +13,11 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CategorieMapper {
-    @Named("categorieMapper")
+    @Named("categorieToCategorieDTO")
     @Mapping(target = "categorie_parent", ignore = true)
-    CategorieDTO categorieMapper(Categorie categorie);
+    CategorieDTO categorieToCategorieDTO(Categorie categorie);
 
-    @Named("categorieMapperLisy")
-    @IterableMapping(qualifiedByName="categorieMapper")
-    List<CategorieDTO> categorieMapperList(List<Categorie> categories);
+    @Named("categorieToCategorieDTOList")
+    @IterableMapping(qualifiedByName="categorieToCategorieDTO")
+    List<CategorieDTO> categorieToCategorieDTOList(List<Categorie> categories);
 }
