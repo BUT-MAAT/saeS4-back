@@ -1,5 +1,6 @@
 package com.saes4.saes4.controller;
 
+import com.saes4.saes4.model.dto.CategorieDTO;
 import com.saes4.saes4.model.entities.Categorie;
 import com.saes4.saes4.service.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,12 @@ public class CategorieController {
     CategorieService categorieService;
 
     @GetMapping("/categorie/all")
-    public List<Categorie> getAllCategories() {
+    public List<CategorieDTO> getAllCategories() {
         return categorieService.getAllCategories();
     }
 
     @GetMapping("/by_parent/{id}")
-    public List<Categorie> getCategoriesByParentId(@PathVariable(value = "id") final Long parent_id) {
+    public List<CategorieDTO> getCategoriesByParentId(@PathVariable(value = "id") final Long parent_id) {
         return categorieService.getCategoriesByParentId(parent_id);
     }
 }

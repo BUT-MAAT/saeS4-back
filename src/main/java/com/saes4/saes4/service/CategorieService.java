@@ -1,5 +1,7 @@
 package com.saes4.saes4.service;
 
+import com.saes4.saes4.mapper.CategorieMapper;
+import com.saes4.saes4.model.dto.CategorieDTO;
 import com.saes4.saes4.model.entities.Categorie;
 import com.saes4.saes4.model.enums.TYPE_CATEGORIE;
 import com.saes4.saes4.repository.CategorieRepository;
@@ -15,18 +17,23 @@ public class CategorieService {
     @Autowired
     CategorieRepository categorieRepository;
 
-    public List<Categorie> getAllCategories() {
-        return categorieRepository.findAll()
+    @Autowired
+    CategorieMapper categorieMapper;
+
+    public List<CategorieDTO> getAllCategories() {
+        List<Categorie> categories = categorieRepository.findAll()
                 .stream()
                 .filter((categorie -> categorie.getType_categorie() == TYPE_CATEGORIE.CATEGORIE))
                 .toList();
+        return categorieMapper.categorieMapperList(categories);
     }
 
-    public List<Categorie> getCategoriesByParentId(Long parent_id) {
-        return categorieRepository.findAll()
+    public List<CategorieDTO> getCategoriesByParentId(Long parent_id) {
+        List<Categorie> categories = categorieRepository.findAll()
                 .stream()
                 .filter((categorie -> categorie.getType_categorie() != TYPE_CATEGORIE.CATEGORIE
                         && categorie.getCategorie_parent().getId_categorie().equals(parent_id)))
                 .toList();
+        return categorieMapper.categorieMapperList(categories);
     }
 }
