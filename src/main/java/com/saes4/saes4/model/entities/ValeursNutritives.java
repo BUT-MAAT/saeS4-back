@@ -1,4 +1,4 @@
-package com.saes4.saes4.model;
+package com.saes4.saes4.model.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

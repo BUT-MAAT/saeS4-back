@@ -1,4 +1,4 @@
-package com.saes4.saes4.model;
+package com.saes4.saes4.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.saes4.saes4.model.enums.TYPE_CATEGORIE;

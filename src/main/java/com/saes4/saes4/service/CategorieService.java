@@ -1,6 +1,6 @@
 package com.saes4.saes4.service;
 
-import com.saes4.saes4.model.Categorie;
+import com.saes4.saes4.model.entities.Categorie;
 import com.saes4.saes4.model.enums.TYPE_CATEGORIE;
 import com.saes4.saes4.repository.CategorieRepository;
 import jakarta.transaction.Transactional;
