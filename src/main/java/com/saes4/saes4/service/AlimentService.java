@@ -1,7 +1,9 @@
 package com.saes4.saes4.service;
 
-import com.saes4.saes4.model.Aliment;
-import com.saes4.saes4.model.ValeursNutritives;
+import com.saes4.saes4.mapper.AlimentMapper;
+import com.saes4.saes4.model.dto.AlimentDTO;
+import com.saes4.saes4.model.entities.Aliment;
+import com.saes4.saes4.model.entities.ValeursNutritives;
 import com.saes4.saes4.repository.AlimentRepository;
 import com.saes4.saes4.repository.ValeursNutritivesRepository;
 import jakarta.transaction.Transactional;
@@ -18,21 +20,23 @@ public class AlimentService {
     AlimentRepository alimentRepository;
 
     @Autowired
+    AlimentMapper alimentMapper;
+
+    @Autowired
     ValeursNutritivesRepository valeursNutritivesRepository;
 
-    public List<Aliment> getAllAliments() {
-        return alimentRepository.findAll();
+    public List<AlimentDTO> getAllAliments() {
+        List<Aliment> aliments = alimentRepository.findAll();
+        return alimentMapper.alimentToAlimentDTONoValeursNutritivesList(aliments);
     }
 
 
-    public List<Aliment> getAlimentsBySousSousCategorie(Long soussouscategorie_id) {
-        return alimentRepository.findAll()
+    public List<AlimentDTO> getAlimentsBySousSousCategorie(final Long soussouscategorie_id, final boolean valeurs_nutritives) {
+        List<Aliment> aliments = alimentRepository.findAll()
                 .stream()
                 .filter(aliment -> aliment.getId_sous_sous_categorie().equals(soussouscategorie_id))
                 .toList();
-    }
-
-    public Optional<ValeursNutritives> getValeursNutritivesAliment(Long aliment_id) {
-        return valeursNutritivesRepository.findById(aliment_id);
+        if (valeurs_nutritives) return alimentMapper.alimentToAlimentDTOWithValeursNutritivesList(aliments);
+        return alimentMapper.alimentToAlimentDTONoValeursNutritivesList(aliments);
     }
 }

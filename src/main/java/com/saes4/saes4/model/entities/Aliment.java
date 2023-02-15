@@ -1,6 +1,7 @@
-package com.saes4.saes4.model;
+package com.saes4.saes4.model.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,4 +25,8 @@ public class Aliment implements Serializable {
 
 
     private Long id_sous_sous_categorie;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_valeurs_nutritives")
+    private ValeursNutritives valeurs_nutritives;
 }
