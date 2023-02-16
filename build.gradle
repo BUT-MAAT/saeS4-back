@@ -31,7 +31,6 @@ dependencies {
 	compileOnly "org.mapstruct:mapstruct:1.5.1.Final"
 	testCompileOnly "org.mapstruct:mapstruct:1.5.1.Final"
 	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.1.Final"
-	testAnnotationProcessor "org.mapstruct:mapstruct- processor:1.5.1.Final"
 	implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 	// implementation 'org.mariadb.jdbc:mariadb-java-client:2.4.3'
 	runtimeOnly 'com.h2database:h2'
