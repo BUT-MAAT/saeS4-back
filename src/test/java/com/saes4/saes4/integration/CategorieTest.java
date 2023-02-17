@@ -16,8 +16,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -38,8 +37,8 @@ public class CategorieTest {
         List<CategorieDTO> categorieDTOList = TestUtil.parseJsonArrayResponse(result, CategorieDTO.class);
 
         // On verifie que la liste de categories n'est pas nulle ni vide
-        assertNotEquals(categorieDTOList, null);
-        assert(!categorieDTOList.isEmpty());
+        assertNotNull(categorieDTOList);
+        assertFalse(categorieDTOList.isEmpty());
 
         // On vérifie que chaque categorie récupérée est du type CATEGORIE
         for(CategorieDTO categorieDTO : categorieDTOList) {
@@ -59,7 +58,7 @@ public class CategorieTest {
         List<CategorieDTO> categorieDTOList = TestUtil.parseJsonArrayResponse(result, CategorieDTO.class);
 
         // On verifie que la liste de categories n'est pas nulle
-        assertNotEquals(categorieDTOList, null);
+        assertNotNull(categorieDTOList);
 
         // On vérifie que chaque categorie récupérée :
         //   * n'est pas du type CATEGORIE

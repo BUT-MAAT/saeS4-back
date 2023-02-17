@@ -12,4 +12,8 @@ public interface SondageMapper {
     @Named("sondageDTOToSondage")
     @Mapping(target = "liste_aliments", qualifiedByName = "alimentDTOToAlimentWithValeursNutritivesList")
     Sondage sondageDTOToSondage(SondageDTO sondage);
+
+    @Named("sondageToSondageDTO")
+    @Mapping(target = "liste_aliments", qualifiedByName = "alimentToAlimentDTOWithValeursNutritivesList")
+    SondageDTO sondageToSondageDTO(Sondage sondage);
 }
