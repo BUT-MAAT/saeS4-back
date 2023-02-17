@@ -1,4 +1,4 @@
-package com.saes4.saes4.integration.mock;
+package com.saes4.saes4.mock;
 
 import com.saes4.saes4.model.entities.Aliment;
 import com.saes4.saes4.model.entities.ValeursNutritives;
