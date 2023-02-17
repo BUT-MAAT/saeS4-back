@@ -1,4 +1,4 @@
-package com.saes4.saes4.mock;
+package com.saes4.saes4.integration.mock;
 
 import com.saes4.saes4.model.entities.Categorie;
 import com.saes4.saes4.model.enums.TYPE_CATEGORIE;

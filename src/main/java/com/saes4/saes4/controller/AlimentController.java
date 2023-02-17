@@ -22,7 +22,7 @@ public class AlimentController {
 
     @GetMapping("/by_soussouscategorie/{id}")
     public List<AlimentDTO> getAlimentsBySousSousCategorie(@PathVariable(value = "id") final Long soussouscategorie_id,
-                                                        @RequestParam(value = "valeurs_nutritives") final boolean valeurs_nutritives) {
+                                                           @RequestParam(value = "valeurs_nutritives") final boolean valeurs_nutritives) {
         return alimentService.getAlimentsBySousSousCategorie(soussouscategorie_id, valeurs_nutritives);
     }
 }
