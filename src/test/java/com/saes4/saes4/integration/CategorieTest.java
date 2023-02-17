@@ -1,11 +1,8 @@
 package com.saes4.saes4.integration;
 
-import com.saes4.saes4.SaeS4Application;
 import com.saes4.saes4.TestUtil;
-import com.saes4.saes4.integration.mock.CategorieMock;
 import com.saes4.saes4.model.dto.CategorieDTO;
 import com.saes4.saes4.model.enums.TYPE_CATEGORIE;
-import com.saes4.saes4.repository.CategorieRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
