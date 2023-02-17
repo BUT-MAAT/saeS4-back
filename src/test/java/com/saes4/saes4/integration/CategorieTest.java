@@ -13,7 +13,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -26,11 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class CategorieTest {
 
-    @Autowired(required = true)
-    private MockMvc restMockMvc;
-
     @Autowired
-    private CategorieRepository categorieRepository;
+    private MockMvc restMockMvc;
 
     @Test
     @Transactional
@@ -40,6 +36,10 @@ public class CategorieTest {
                 .andReturn();
 
         List<CategorieDTO> categorieDTOList = TestUtil.parseJsonArrayResponse(result, CategorieDTO.class);
+
+        // On verifie que la liste de categories n'est pas nulle ni vide
+        assertNotEquals(categorieDTOList, null);
+        assert(!categorieDTOList.isEmpty());
 
         // On vérifie que chaque categorie récupérée est du type CATEGORIE
         for(CategorieDTO categorieDTO : categorieDTOList) {
@@ -57,6 +57,9 @@ public class CategorieTest {
                 .andReturn();
 
         List<CategorieDTO> categorieDTOList = TestUtil.parseJsonArrayResponse(result, CategorieDTO.class);
+
+        // On verifie que la liste de categories n'est pas nulle
+        assertNotEquals(categorieDTOList, null);
 
         // On vérifie que chaque categorie récupérée :
         //   * n'est pas du type CATEGORIE
