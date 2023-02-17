@@ -48,8 +48,6 @@ public class SondageTest {
         Sondage sondageRequested = TestUtil.parseJsonResponse(result, Sondage.class);
 
         assertNotNull(sondageRequested);
-        // Maintenant que l'insertion est faite, l'id doit être défini
-       // assertNotNull(sondageRequested.getId_personne());
         // On vérifie que les attributs de sondage valent ceux de notre insertion
         assertEquals(sondage.getNom(), sondageRequested.getNom());
         assertEquals(sondage.getPrenom(), sondageRequested.getPrenom());
