@@ -40,6 +40,10 @@ public class TestUtil {
         return Arrays.asList(objects);
     }
 
+    public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
+        return mapper.writeValueAsBytes(object);
+    }
+
     private TestUtil() {
     }
 }

@@ -13,8 +13,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,8 +34,8 @@ public class AlimentTest {
         List<AlimentDTO> alimentDTOList = TestUtil.parseJsonArrayResponse(result, AlimentDTO.class);
 
         // On verifie que la liste d'aliments n'est pas nulle ni vide
-        assertNotEquals(alimentDTOList, null);
-        assert(!alimentDTOList.isEmpty());
+        assertNotNull(alimentDTOList);
+        assertTrue(!alimentDTOList.isEmpty());
     }
 
     @Test
@@ -47,14 +46,14 @@ public class AlimentTest {
         List<AlimentDTO> alimentDTOList = this.getAlimentBySousSousCategorie(SOUSSOUSCATEGORIE_ID, false);
 
         // On verifie que la liste d'aliments n'est pas nulle
-        assertNotEquals(alimentDTOList, null);
+        assertNotNull(alimentDTOList);
 
         // On verifie pour chaque aliment que :
         //  * Sa sous categorie soit bien SOUSSOUSCATEGORIE_ID
         //  * Qu'il n'a pas de valeurs nutritives associées
         for (AlimentDTO alimentDTO : alimentDTOList) {
             assertEquals(alimentDTO.getId_sous_sous_categorie(), SOUSSOUSCATEGORIE_ID);
-            assertEquals(alimentDTO.getValeurs_nutritives(), null);
+            assertNull(alimentDTO.getValeurs_nutritives());
         }
     }
 

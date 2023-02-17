@@ -36,7 +36,7 @@ public class Sondage implements Serializable {
 
     private Date date_reponse;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "CHOIX_ALIMENTS_SONDAGE",
             joinColumns = { @JoinColumn(name = "id_personne") },
             inverseJoinColumns = { @JoinColumn(name = "id_aliment") })
