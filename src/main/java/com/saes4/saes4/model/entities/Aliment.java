@@ -8,7 +8,6 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @Table(name = "aliment")
 public class Aliment implements Serializable {
