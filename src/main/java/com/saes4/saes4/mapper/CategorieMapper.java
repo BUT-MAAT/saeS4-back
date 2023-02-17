@@ -14,7 +14,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CategorieMapper {
     @Named("categorieToCategorieDTO")
-    @Mapping(target = "categorie_parent", ignore = true)
+    @Mapping(target = "categorie_parent", ignore = false)
     CategorieDTO categorieToCategorieDTO(Categorie categorie);
 
     @Named("categorieToCategorieDTOList")
