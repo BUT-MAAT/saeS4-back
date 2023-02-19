@@ -1,5 +1,16 @@
-version: "3.9"
+version: '3'
 services:
+  myproject:
+    image: 'saes4'
+    ports:
+      - "9000:9000"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.h2.Driver
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=password
+    depends_on:
+      - maria_db
   maria_db:
     image: mariadb:10.4.13
     container_name: maria_db
@@ -26,11 +37,3 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-password}
     depends_on:
       - maria_db
-  # api_service:
-  #  ports:
-  #    - 8080:8080
-  #  depends_on:
-  #    - maria_db
-  #  links:
-  #    - maria_db:saes4_db
-  #  build: .

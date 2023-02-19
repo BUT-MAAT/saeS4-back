@@ -36,8 +36,20 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	// runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//mariadb
+	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+bootJar{
+	enabled = true
+}
+task myBashCommand(type: Exec) {
+	dependsOn bootJar
+	workingDir projectDir
+//	commandLine 'bash', '-c', 'mv build/libs/saeS4-0.0.1-SNAPSHOT.jar build/libs/saes4.jar'
+	commandLine 'bash', '-c', 'docker build -t saes4 .'
+	commandLine 'bash', '-c', 'docker-compose up -d'
 }
