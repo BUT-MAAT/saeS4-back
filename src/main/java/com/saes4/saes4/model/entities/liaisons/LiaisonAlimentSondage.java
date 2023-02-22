@@ -1,5 +1,7 @@
-package com.saes4.saes4.model.entities;
+package com.saes4.saes4.model.entities.liaisons;
 
+import com.saes4.saes4.model.entities.Aliment;
+import com.saes4.saes4.model.entities.Sondage;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

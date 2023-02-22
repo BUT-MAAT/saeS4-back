@@ -8,8 +8,8 @@ import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring", uses = {AlimentMapper.class, CategorieMapper.class})
 public interface StatistiquesGeneralesMapper {
-    @Named("statistiquesGeneralesTostatistiquesGeneralesDTO")
+    @Named("statistiquesGeneralesToStatistiquesGeneralesDTO")
     @Mapping(target = "aliment_plus_choisi", qualifiedByName = "alimentToAlimentDTONoValeursNutritives")
     @Mapping(target = "categorie_plus_choisi", qualifiedByName = "categorieToCategorieDTO")
-    StatistiquesGeneralesDTO statistiquesGeneralesTostatistiquesGeneralesDTO(StatistiquesGenerales statistiquesGenerales);
+    StatistiquesGeneralesDTO statistiquesGeneralesToStatistiquesGeneralesDTO(StatistiquesGenerales statistiquesGenerales);
 }

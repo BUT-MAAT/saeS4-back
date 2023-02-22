@@ -17,6 +17,6 @@ public class StatistiquesController {
 
     @GetMapping("/")
     public StatistiquesDTO getStatistiques() {
-        return statistiquesService.getStatistiques();
+        return statistiquesService.getLastStatistiques();
     }
 }

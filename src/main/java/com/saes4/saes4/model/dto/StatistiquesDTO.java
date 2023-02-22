@@ -9,5 +9,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class StatistiquesDTO {
 
-    StatistiquesGeneralesDTO statistiquesGenerales;
+    StatistiquesGeneralesDTO statistiques_generales;
 }
