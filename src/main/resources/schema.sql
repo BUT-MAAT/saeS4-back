@@ -106,4 +106,54 @@ CREATE TABLE CHOIX_ALIMENTS_SONDAGE (
    FOREIGN KEY(id_personne) REFERENCES SONDAGE(id_personne)
 );
 
+CREATE TABLE STATISTIQUES_GENERALES (
+    id_statistiques INTEGER PRIMARY KEY,
+    timelog DATETIME,
+    nombre_reponses INTEGER,
+    id_aliment_plus_choisi INTEGER,
+    id_categorie_plus_choisi INTEGER,
+    CONSTRAINT U_Statistiques_Timelog UNIQUE(timelog),
+    CONSTRAINT FK_Statistiques_Aliment
+        FOREIGN KEY(id_aliment_plus_choisi) REFERENCES ALIMENT(id_aliment),
+    CONSTRAINT FK_Statistiques_Categorie
+        FOREIGN KEY(id_categorie_plus_choisi) REFERENCES CATEGORIE(id_categorie)
+);
+
+-- Creation des Sequences
 CREATE SEQUENCE SONDAGE_SEQ;
+ CREATE SEQUENCE STATISTIQUES_GENERALES_SEQ;
+
+
+-- Vue qui renvoie la liste des categories les plus choisies triee
+CREATE VIEW V_CategoriesTrieesParSelection
+AS
+SELECT C.ID_CATEGORIE, COUNT(C.ID_CATEGORIE)
+FROM (((CHOIX_ALIMENTS_SONDAGE CAS INNER JOIN ALIMENT A ON CAS.id_aliment=A.id_aliment)
+    INNER JOIN CATEGORIE SS_C ON SS_C.id_categorie=A.id_sous_sous_categorie)
+    INNER JOIN CATEGORIE S_C ON S_C.id_categorie=SS_C.id_categorie_parent)
+    INNER JOIN CATEGORIE C ON C.id_categorie=S_C.id_categorie_parent
+WHERE C.TYPE_CATEGORIE LIKE 'CATEGORIE'
+GROUP BY C.ID_CATEGORIE
+ORDER BY COUNT(C.ID_CATEGORIE);
+
+-- A activer apres passage a MariaDB
+-- CREATE TRIGGER T_Sondage_Statistiques
+-- AFTER INSERT ON SONDAGE AS
+-- DECLARE
+--     NbReponses INTEGER;
+--     IdAlimentPlusChoisi INTEGER;
+--     IdCategoriePlusChoisie INTEGER;
+-- BEGIN
+--     -- On compte le nombre de reponses
+--     SELECT COUNT(id_personne) INTO NbReponses FROM SONDAGE;
+--     -- Trouve l'aliment le plus choisi
+--     SELECT TOP(1) id_aliment INTO IdAlimentPlusChoisi, COUNT(id_aliment)
+--     FROM CHOIX_ALIMENTS_SONDAGE
+--     GROUP BY id_aliment
+--     ORDER BY COUNT(id_aliment);
+--     -- Trouve la categorie la plus choisie
+--     SELECT TOP(1) id_categorie INTO IdCategoriePlusChoisie FROM V_CategoriesTrieesParSelection;
+--     -- On insere le tout dans les statistiques
+--     INSERT INTO STATISTIQUES_GENERALES(id_statistiques, timelog, nombre_reponses, id_aliment_plus_choisi, id_categorie_plus_choisi)
+--     VALUES(NEXTVALUE FOR STATISTIQUES_GENERALES_SEQ, SYSDATE, NbReponses, IdAlimentPlusChoisi, IdCategoriePlusChoisie);
+-- END;
