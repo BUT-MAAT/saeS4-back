@@ -30,7 +30,7 @@ public class AddressService {
             String response = s.hasNext() ? s.next() : "";
             JSONObject jsonResponse = new JSONObject(response.toString());
             JSONArray jsonArray = jsonResponse.getJSONArray("features");
-            //ObjectMapper =
+
             return null;
         }
         catch(Exception e){
