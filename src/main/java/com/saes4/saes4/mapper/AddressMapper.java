@@ -1,2 +1,4 @@
-package com.saes4.saes4.mapper;public class AddressMapper {
+package com.saes4.saes4.mapper;
+
+public class AddressMapper {
 }
