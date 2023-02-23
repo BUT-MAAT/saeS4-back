@@ -15,10 +15,20 @@ public interface LiaisonAlimentSondageRepository extends JpaRepository<LiaisonAl
     @Query(value = "SELECT TOP(1) id_aliment " +
             "FROM CHOIX_ALIMENTS_SONDAGE " +
             "GROUP BY id_aliment " +
-            "ORDER BY COUNT(id_aliment)", nativeQuery = true)
+            "ORDER BY COUNT(id_aliment) DESC", nativeQuery = true)
     Long getMostSelectedAlimentId();
+
+    @Query(value = "SELECT TOP(1) COUNT(id_aliment) " +
+            "FROM CHOIX_ALIMENTS_SONDAGE " +
+            "GROUP BY id_aliment " +
+            "ORDER BY COUNT(id_aliment) DESC", nativeQuery = true)
+    Long getMostSelectedAlimentCount();
 
     @Query(value = "SELECT TOP(1) id_categorie " +
             "FROM V_CategoriesTrieesParSelection", nativeQuery = true)
     Long getMostSelectedCategorieId();
+
+    @Query(value = "SELECT TOP(1) NB_SELECTIONS " +
+            "FROM V_CategoriesTrieesParSelection", nativeQuery = true)
+    Long getMostSelectedCategorieCount();
 }

@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Transactional()
 public interface StatistiquesGeneralesRepository extends JpaRepository<StatistiquesGenerales, Long>,
                                                 JpaSpecificationExecutor<StatistiquesGenerales> {
-    StatistiquesGenerales findTopByOrderByTimelog();
+    StatistiquesGenerales findTopByOrderByTimelogDesc();
 }

@@ -111,7 +111,9 @@ CREATE TABLE STATISTIQUES_GENERALES (
     timelog DATETIME,
     nombre_reponses INTEGER,
     id_aliment_plus_choisi INTEGER,
+    nb_selections_aliment INTEGER,
     id_categorie_plus_choisi INTEGER,
+    nb_selections_categorie INTEGER,
     CONSTRAINT U_Statistiques_Timelog UNIQUE(timelog),
     CONSTRAINT FK_Statistiques_Aliment
         FOREIGN KEY(id_aliment_plus_choisi) REFERENCES ALIMENT(id_aliment),
@@ -127,14 +129,14 @@ CREATE SEQUENCE SONDAGE_SEQ;
 -- Vue qui renvoie la liste des categories les plus choisies triee
 CREATE VIEW V_CategoriesTrieesParSelection
 AS
-SELECT C.ID_CATEGORIE, COUNT(C.ID_CATEGORIE)
+SELECT C.ID_CATEGORIE, COUNT(C.ID_CATEGORIE) AS NB_SELECTIONS
 FROM (((CHOIX_ALIMENTS_SONDAGE CAS INNER JOIN ALIMENT A ON CAS.id_aliment=A.id_aliment)
     INNER JOIN CATEGORIE SS_C ON SS_C.id_categorie=A.id_sous_sous_categorie)
     INNER JOIN CATEGORIE S_C ON S_C.id_categorie=SS_C.id_categorie_parent)
     INNER JOIN CATEGORIE C ON C.id_categorie=S_C.id_categorie_parent
 WHERE C.TYPE_CATEGORIE LIKE 'CATEGORIE'
 GROUP BY C.ID_CATEGORIE
-ORDER BY COUNT(C.ID_CATEGORIE);
+ORDER BY COUNT(C.ID_CATEGORIE) DESC;
 
 -- A activer apres passage a MariaDB
 -- CREATE TRIGGER T_Sondage_Statistiques

@@ -1,5 +1,7 @@
 package com.saes4.saes4.model.dto;
 
+import com.saes4.saes4.model.dto.statistiques.AlimentStatistiquesDTO;
+import com.saes4.saes4.model.dto.statistiques.CategorieStatistiqueDTO;
 import jakarta.persistence.TableGenerator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +19,7 @@ public class StatistiquesGeneralesDTO {
 
     private Long nombre_reponses;
 
-    private AlimentDTO aliment_plus_choisi;
+    private AlimentStatistiquesDTO aliment_plus_choisi;
 
-    private CategorieDTO categorie_plus_choisi;
+    private CategorieStatistiqueDTO categorie_plus_choisi;
 }

@@ -30,7 +30,11 @@ public class StatistiquesGenerales implements Serializable {
     @JoinColumn(name = "id_aliment_plus_choisi")
     private Aliment aliment_plus_choisi;
 
+    private Long nb_selections_aliment;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_categorie_plus_choisi")
     private Categorie categorie_plus_choisi;
+
+    private Long nb_selections_categorie;
 }

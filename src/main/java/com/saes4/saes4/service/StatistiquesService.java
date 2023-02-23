@@ -1,7 +1,7 @@
 package com.saes4.saes4.service;
 
 import com.saes4.saes4.mapper.StatistiquesGeneralesMapper;
-import com.saes4.saes4.model.dto.StatistiquesDTO;
+import com.saes4.saes4.model.dto.statistiques.StatistiquesDTO;
 import com.saes4.saes4.model.dto.StatistiquesGeneralesDTO;
 import com.saes4.saes4.model.entities.StatistiquesGenerales;
 import com.saes4.saes4.repository.StatistiquesGeneralesRepository;
@@ -20,11 +20,14 @@ public class StatistiquesService {
     StatistiquesGeneralesMapper statistiquesGeneralesMapper;
 
     public StatistiquesDTO getLastStatistiques() {
-        StatistiquesGenerales statistiquesGenerales = statistiquesGeneralesRepository.findTopByOrderByTimelog();
-        StatistiquesGeneralesDTO statistiquesGeneralesDTO = statistiquesGeneralesMapper.statistiquesGeneralesToStatistiquesGeneralesDTO(statistiquesGenerales);
+        StatistiquesGenerales statistiquesGenerales = statistiquesGeneralesRepository.findTopByOrderByTimelogDesc();
+        StatistiquesGeneralesDTO statistiquesGeneralesDTO = statistiquesGeneralesMapper.complementStatistiquesGeneralesToStatistiquesGeneralesDTO(
+                statistiquesGenerales,
+                statistiquesGeneralesMapper.statistiquesGeneralesToStatistiquesGeneralesDTO(statistiquesGenerales)
+        );
 
         StatistiquesDTO statistiquesDTO = new StatistiquesDTO();
-        statistiquesDTO.setStatistiquesGenerales(statistiquesGeneralesDTO);
+        statistiquesDTO.setStatistiques_generales(statistiquesGeneralesDTO);
 
         return statistiquesDTO;
     }
