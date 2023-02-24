@@ -1,7 +1,9 @@
 package com.saes4.saes4.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.saes4.saes4.model.dto.AddressDTO;
+import com.saes4.saes4.model.dto.FeatureCollectionDTO;
 import jakarta.transaction.Transactional;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,13 +13,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 @Service
 @Transactional
 public class AddressService {
 
-    public List<AddressDTO> getAddressBySubstring(String substring){
+    public List<FeatureCollectionDTO> getAddressBySubstring(String substring){
         try{
             URL url = new URL("https://api-adresse.data.gouv.fr/search/?q=16+Ruelle");
             HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -30,10 +33,15 @@ public class AddressService {
             String response = s.hasNext() ? s.next() : "";
             JSONObject jsonResponse = new JSONObject(response.toString());
             JSONArray jsonArray = jsonResponse.getJSONArray("features");
-
-            return null;
+            ObjectMapper objectMapper = new ObjectMapper();
+            String test = jsonArray.toString();
+            ObjectMapper mapper = new ObjectMapper();
+            List<FeatureCollectionDTO> featureDtoList = objectMapper.readValue(test, new TypeReference<List<FeatureCollectionDTO>>(){});
+            int a = 12;
+            return featureDtoList;
         }
         catch(Exception e){
+            e.printStackTrace();
             return null;
         }
     }
