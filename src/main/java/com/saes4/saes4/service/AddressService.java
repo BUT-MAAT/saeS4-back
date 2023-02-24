@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -20,9 +21,11 @@ import java.util.stream.Collectors;
 @Transactional
 public class AddressService {
 
-    public List<FeatureCollectionDTO> getAddressBySubstring(String substring){
+    public List<AddressDTO> getAddressBySubstring(String substring){
+        if(substring.replaceAll("\\+","").length()<3)
+            return null;
         try{
-            URL url = new URL("https://api-adresse.data.gouv.fr/search/?q=16+Ruelle");
+            URL url = new URL("https://api-adresse.data.gouv.fr/search/?q="+substring);
             HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
             httpConn.setRequestMethod("GET");
 
@@ -35,10 +38,11 @@ public class AddressService {
             JSONArray jsonArray = jsonResponse.getJSONArray("features");
             ObjectMapper objectMapper = new ObjectMapper();
             String test = jsonArray.toString();
-            ObjectMapper mapper = new ObjectMapper();
             List<FeatureCollectionDTO> featureDtoList = objectMapper.readValue(test, new TypeReference<List<FeatureCollectionDTO>>(){});
-            int a = 12;
-            return featureDtoList;
+            List<AddressDTO> addressDTOS = new ArrayList<>();
+            for(FeatureCollectionDTO feature : featureDtoList)
+                addressDTOS.add(feature.getProperties());
+            return addressDTOS;
         }
         catch(Exception e){
             e.printStackTrace();

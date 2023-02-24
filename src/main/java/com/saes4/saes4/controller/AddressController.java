@@ -18,7 +18,7 @@ public class AddressController {
     @Autowired
     AddressService addressService;
     @GetMapping("/getaddress/{addressSubString}")
-    public List<FeatureCollectionDTO> getAddressBySubstring(@PathVariable(value = "addressSubString") final String address) {
+    public List<AddressDTO> getAddressBySubstring(@PathVariable(value = "addressSubString") final String address) {
         return addressService.getAddressBySubstring(address);
     }
 
