@@ -36,10 +36,25 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	// runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
 	implementation 'org.json:json:20211205'
+	//mariadb
+	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
+
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+bootJar{
+	enabled = true
+}
+task buildDocker(type: Exec) {
+	dependsOn bootJar
+	commandLine 'docker', 'build', '-t', 'saes4', '.'
+}
+task runDocker(type: Exec) {
+	dependsOn buildDocker
+	commandLine 'docker-compose','up', '-d'
 }

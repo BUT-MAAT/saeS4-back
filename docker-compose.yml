@@ -1,18 +1,28 @@
-version: "3.9"
+version: '3'
 services:
+  myproject:
+    image: 'saes4'
+    ports:
+      - "9000:9000"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.h2.Driver
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=password
+    depends_on:
+      - maria_db
   maria_db:
     image: mariadb:10.4.13
     container_name: maria_db
     volumes:
       - ./mysql:/var/lib/mysql
     ports:
-      - 8081:8081
+      - '8081:8081'
     environment:
+      - MYSQL_DATABASE= sae4
       - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD:-password}
       - MYSQL_USER=${DATABASE_USER:-root}
       - MYSQL_PASSWORD={DATABASE_PASSWORD:-password}
-      #- MYSQL_DATABASE: java_to_saes4
-      # - MYSQL_DATABASE={DATABASE_NAME:saes4}
     restart: always
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:${PHPMYADMIN_VERSION:-latest}
@@ -26,11 +36,3 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-password}
     depends_on:
       - maria_db
-  # api_service:
-  #  ports:
-  #    - 8080:8080
-  #  depends_on:
-  #    - maria_db
-  #  links:
-  #    - maria_db:saes4_db
-  #  build: .
