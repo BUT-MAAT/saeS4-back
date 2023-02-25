@@ -1,6 +1,7 @@
 package com.saes4.saes4.mapper;
 
 import com.saes4.saes4.model.dto.AlimentDTO;
+import com.saes4.saes4.model.dto.statistiques.AlimentStatistiquesDTO;
 import com.saes4.saes4.model.entities.Aliment;
 import com.saes4.saes4.model.entities.ValeursNutritives;
 import org.mapstruct.IterableMapping;
@@ -35,4 +36,8 @@ public interface AlimentMapper {
     @Named("alimentDTOToAlimentWithValeursNutritivesList")
     @IterableMapping(qualifiedByName="alimentDTOToAlimentWithValeursNutritives")
     List<Aliment> alimentDTOToAlimentWithValeursNutritivesList(List<AlimentDTO> aliments);
+
+    @Named("alimentToAlimentStatistiquesDTO")
+    @Mapping(target = "nb_selections", ignore = true)
+    AlimentStatistiquesDTO alimentToAlimentStatistiquesDTO(Aliment aliment);
 }

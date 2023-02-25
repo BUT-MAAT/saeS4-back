@@ -2,6 +2,7 @@ package com.saes4.saes4.mapper;
 
 import com.saes4.saes4.model.dto.AlimentDTO;
 import com.saes4.saes4.model.dto.CategorieDTO;
+import com.saes4.saes4.model.dto.statistiques.CategorieStatistiqueDTO;
 import com.saes4.saes4.model.entities.Aliment;
 import com.saes4.saes4.model.entities.Categorie;
 import org.mapstruct.IterableMapping;
@@ -20,4 +21,8 @@ public interface CategorieMapper {
     @Named("categorieToCategorieDTOList")
     @IterableMapping(qualifiedByName="categorieToCategorieDTO")
     List<CategorieDTO> categorieToCategorieDTOList(List<Categorie> categories);
+
+    @Named("categorieToCategorieStatistiquesDTO")
+    @Mapping(target = "nb_selections", ignore = true)
+    CategorieStatistiqueDTO categorieToCategorieStatistiquesDTO(Categorie categorie);
 }
