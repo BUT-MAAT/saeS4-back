@@ -17,13 +17,12 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
     ports:
-      - 8081:8081
+      - '8081:8081'
     environment:
+      - MYSQL_DATABASE= sae4
       - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD:-password}
       - MYSQL_USER=${DATABASE_USER:-root}
       - MYSQL_PASSWORD={DATABASE_PASSWORD:-password}
-      #- MYSQL_DATABASE: java_to_saes4
-      # - MYSQL_DATABASE={DATABASE_NAME:saes4}
     restart: always
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:${PHPMYADMIN_VERSION:-latest}
