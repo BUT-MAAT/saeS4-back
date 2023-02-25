@@ -46,14 +46,11 @@ tasks.named('test') {
 bootJar{
 	enabled = true
 }
-
 task buildDocker(type: Exec) {
 	dependsOn bootJar
 	commandLine 'docker', 'build', '-t', 'saes4', '.'
 }
-task runDocker(type: Exec, dependsOn: buildDocker) {
-	doLast {
-		commandLine 'docker', 'run', '-p', '8080:8080', 'mon-application'
-	}
-
+task runDocker(type: Exec) {
+	dependsOn buildDocker
+	commandLine 'docker-compose','up', '-d'
 }

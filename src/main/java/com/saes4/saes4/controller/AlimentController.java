@@ -26,4 +26,6 @@ public class AlimentController {
         return alimentService.getAlimentsBySousSousCategorie(soussouscategorie_id, valeurs_nutritives);
 
     }
+
+
 }
