@@ -9,6 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CategorieStatistiqueDTO {
+
+    private Long  id_categorie;
+
     private String nom_categorie;
 
     private Long nb_selections;

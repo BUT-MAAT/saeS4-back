@@ -9,6 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AlimentStatistiquesDTO {
+
+    private Long  id_aliment;
+
     private String nom_aliment;
 
     private Long nb_selections;
