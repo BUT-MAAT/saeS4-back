@@ -1,7 +1,12 @@
 version: '3'
 services:
-  myproject:
-    image: 'saes4'
+  spring:
+    container_name: "spring"
+    build: .
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ~/.gradle:/root/.gradle
     ports:
       - "9000:9000"
     environment:
@@ -11,6 +16,8 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
     depends_on:
       - maria_db
+#   command: gradle -D spring.profiles.active=docker bootrun
+    command: gradle -D spring.profiles.active=docker test
   maria_db:
     image: mariadb:10.4.13
     container_name: maria_db
