@@ -13,7 +13,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Table(name = "statistiques_generales")
-public class StatistiquesGenerales implements Serializable {
+public class Statistiques implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

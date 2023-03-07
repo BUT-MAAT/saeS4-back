@@ -2,8 +2,6 @@ package com.saes4.saes4.integration;
 
 import com.saes4.saes4.TestUtil;
 import com.saes4.saes4.integration.mock.SondageMock;
-import com.saes4.saes4.model.dto.AlimentDTO;
-import com.saes4.saes4.model.dto.statistiques.StatistiquesDTO;
 import com.saes4.saes4.model.entities.Sondage;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -15,7 +13,6 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

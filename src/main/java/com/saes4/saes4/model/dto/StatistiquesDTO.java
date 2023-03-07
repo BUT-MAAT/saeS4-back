@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class StatistiquesGeneralesDTO {
+public class StatistiquesDTO {
     private Long id_statistiques;
 
     private Date timelog;

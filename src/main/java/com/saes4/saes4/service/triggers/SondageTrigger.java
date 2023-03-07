@@ -2,7 +2,7 @@ package com.saes4.saes4.service.triggers;
 
 import com.saes4.saes4.model.entities.Aliment;
 import com.saes4.saes4.model.entities.Categorie;
-import com.saes4.saes4.model.entities.StatistiquesGenerales;
+import com.saes4.saes4.model.entities.Statistiques;
 import com.saes4.saes4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class SondageTrigger {
     @Autowired
     private SondageRepository sondageRepository;
     @Autowired
-    private StatistiquesGeneralesRepository statistiquesGeneralesRepository;
+    private StatistiquesRepository statistiquesRepository;
     @Autowired
     private AlimentRepository alimentRepository;
     @Autowired
@@ -23,7 +23,7 @@ public class SondageTrigger {
     private LiaisonAlimentSondageRepository liaisonAlimentSondageRepository;
 
     public void triggerStatistiquesGenerales() {
-        StatistiquesGenerales statistiquesGenerales = new StatistiquesGenerales();
+        Statistiques statistiques = new Statistiques();
 
         Long nbReponse = sondageRepository.findAll()
                 .stream()
@@ -37,12 +37,12 @@ public class SondageTrigger {
         ).get();
         Long nbSelectionsCategorie = liaisonAlimentSondageRepository.getMostSelectedCategorieCount();
 
-        statistiquesGenerales.setTimelog(new Date());
-        statistiquesGenerales.setNombre_reponses(nbReponse);
-        statistiquesGenerales.setAliment_plus_choisi(alimentLePlusChoisi);
-        statistiquesGenerales.setNb_selections_aliment(nbSelectionsAliment);
-        statistiquesGenerales.setCategorie_plus_choisi(categorieLaPlusChoisie);
-        statistiquesGenerales.setNb_selections_categorie(nbSelectionsCategorie);
-        statistiquesGeneralesRepository.save(statistiquesGenerales);
+        statistiques.setTimelog(new Date());
+        statistiques.setNombre_reponses(nbReponse);
+        statistiques.setAliment_plus_choisi(alimentLePlusChoisi);
+        statistiques.setNb_selections_aliment(nbSelectionsAliment);
+        statistiques.setCategorie_plus_choisi(categorieLaPlusChoisie);
+        statistiques.setNb_selections_categorie(nbSelectionsCategorie);
+        statistiquesRepository.save(statistiques);
     }
 }
