@@ -2,6 +2,7 @@ package com.saes4.saes4.integration;
 
 import com.saes4.saes4.TestUtil;
 import com.saes4.saes4.integration.mock.SondageMock;
+import com.saes4.saes4.model.dto.StatistiquesDTO;
 import com.saes4.saes4.model.entities.Sondage;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -43,8 +45,8 @@ public class StatistiquesTest {
 
         StatistiquesDTO statistiques = TestUtil.parseJsonResponse(result, StatistiquesDTO.class);
 
-        assertEquals(statistiques.getStatistiques_generales().getNombre_reponses(), NOMBRE_REPONSES);
-        assertEquals(statistiques.getStatistiques_generales().getAliment_plus_choisi().getId_aliment(), ID_ALIMENT_PLUS_CHOISI);
-        assertEquals(statistiques.getStatistiques_generales().getCategorie_plus_choisi().getId_categorie(), ID_CATEGORIE_PLUS_CHOISIE);
+        assertEquals(statistiques.getNombre_reponses(), NOMBRE_REPONSES);
+        assertEquals(statistiques.getAliment_plus_choisi().getId_aliment(), ID_ALIMENT_PLUS_CHOISI);
+        assertEquals(statistiques.getCategorie_plus_choisi().getId_categorie(), ID_CATEGORIE_PLUS_CHOISIE);
     }
 }
