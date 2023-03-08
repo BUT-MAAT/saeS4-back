@@ -1,22 +1,5 @@
 version: '3.9'
 services:
-#  spring:
-#    container_name: "spring"
-#    build: .
-#    working_dir: /app
-#    volumes:
-#      - ./:/app
-#      - ~/.gradle:/root/.gradle
-#    ports:
-#      - "9000:9000"
-#    environment:
-#      MARIADB_ADDRESS: mariadb
-#      MARIADB_USERNAME: root
-#      MARIADB_PASSWORD: root
-#    depends_on:
-#      - mariadb
-##    command: gradle -D spring.profiles.active=docker bootrun
-#    command: gradle -D spring.profiles.active=docker test
   mariadb:
     container_name: mariadb
     image: mariadb:latest
@@ -24,7 +7,7 @@ services:
       - "3306:3306"
     environment:
       MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: testdb
+      MARIADB_DATABASE: saes4
     restart: always
     volumes:
       - ./mysql:/var/lib/mysql

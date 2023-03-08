@@ -15,7 +15,7 @@ public interface LiaisonAlimentSondageRepository extends JpaRepository<LiaisonAl
     @Query(value = "SELECT id_aliment " +
             "FROM CHOIX_ALIMENTS_SONDAGE " +
             "GROUP BY id_aliment " +
-            "ORDER BY COUNT(id_aliment) " +
+            "ORDER BY COUNT(id_aliment) DESC " +
             "LIMIT 1", nativeQuery = true)
     Long getMostSelectedAlimentId();
 
