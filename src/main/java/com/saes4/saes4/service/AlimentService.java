@@ -36,6 +36,7 @@ public class AlimentService {
                 .stream()
                 .filter(aliment -> aliment.getId_sous_sous_categorie().equals(soussouscategorie_id))
                 .toList();
+
         if (valeurs_nutritives) return alimentMapper.alimentToAlimentDTOWithValeursNutritivesList(aliments);
         return alimentMapper.alimentToAlimentDTONoValeursNutritivesList(aliments);
     }

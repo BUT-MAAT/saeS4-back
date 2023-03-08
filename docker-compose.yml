@@ -24,7 +24,7 @@ services:
       - "3306:3306"
     environment:
       MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: testdb
+      MARIADB_DATABASE: saes4
     restart: always
     volumes:
       - ./mysql:/var/lib/mysql
