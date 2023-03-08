@@ -12,23 +12,27 @@ import org.springframework.stereotype.Repository;
 public interface LiaisonAlimentSondageRepository extends JpaRepository<LiaisonAlimentSondage, Long>,
         JpaSpecificationExecutor<LiaisonAlimentSondage> {
 
-    @Query(value = "SELECT TOP(1) id_aliment " +
+    @Query(value = "SELECT id_aliment " +
             "FROM CHOIX_ALIMENTS_SONDAGE " +
             "GROUP BY id_aliment " +
-            "ORDER BY COUNT(id_aliment) DESC", nativeQuery = true)
+            "ORDER BY COUNT(id_aliment) " +
+            "LIMIT 1", nativeQuery = true)
     Long getMostSelectedAlimentId();
 
-    @Query(value = "SELECT TOP(1) COUNT(id_aliment) " +
+    @Query(value = "SELECT COUNT(id_aliment) " +
             "FROM CHOIX_ALIMENTS_SONDAGE " +
             "GROUP BY id_aliment " +
-            "ORDER BY COUNT(id_aliment) DESC", nativeQuery = true)
+            "ORDER BY COUNT(id_aliment) DESC " +
+            "LIMIT 1", nativeQuery = true)
     Long getMostSelectedAlimentCount();
 
-    @Query(value = "SELECT TOP(1) id_categorie " +
-            "FROM V_CategoriesTrieesParSelection", nativeQuery = true)
+    @Query(value = "SELECT id_categorie " +
+            "FROM V_CategoriesTrieesParSelection " +
+            "LIMIT 1", nativeQuery = true)
     Long getMostSelectedCategorieId();
 
-    @Query(value = "SELECT TOP(1) NB_SELECTIONS " +
-            "FROM V_CategoriesTrieesParSelection", nativeQuery = true)
+    @Query(value = "SELECT NB_SELECTIONS " +
+            "FROM V_CategoriesTrieesParSelection " +
+            "LIMIT 1", nativeQuery = true)
     Long getMostSelectedCategorieCount();
 }
