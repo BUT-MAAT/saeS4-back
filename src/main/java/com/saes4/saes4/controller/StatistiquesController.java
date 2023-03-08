@@ -1,6 +1,6 @@
 package com.saes4.saes4.controller;
 
-import com.saes4.saes4.model.dto.statistiques.StatistiquesDTO;
+import com.saes4.saes4.model.dto.StatistiquesDTO;
 import com.saes4.saes4.service.StatistiquesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

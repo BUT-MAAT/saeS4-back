@@ -1,10 +1,9 @@
 package com.saes4.saes4.service;
 
-import com.saes4.saes4.mapper.StatistiquesGeneralesMapper;
-import com.saes4.saes4.model.dto.statistiques.StatistiquesDTO;
-import com.saes4.saes4.model.dto.StatistiquesGeneralesDTO;
-import com.saes4.saes4.model.entities.StatistiquesGenerales;
-import com.saes4.saes4.repository.StatistiquesGeneralesRepository;
+import com.saes4.saes4.mapper.StatistiquesMapper;
+import com.saes4.saes4.model.dto.StatistiquesDTO;
+import com.saes4.saes4.model.entities.Statistiques;
+import com.saes4.saes4.repository.StatistiquesRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,21 +13,23 @@ import org.springframework.stereotype.Service;
 public class StatistiquesService {
 
     @Autowired
-    private StatistiquesGeneralesRepository statistiquesGeneralesRepository;
+    private StatistiquesRepository statistiquesRepository;
 
     @Autowired
-    StatistiquesGeneralesMapper statistiquesGeneralesMapper;
+    StatistiquesMapper statistiquesMapper;
 
     public StatistiquesDTO getLastStatistiques() {
-        StatistiquesGenerales statistiquesGenerales = statistiquesGeneralesRepository.findTopByOrderByTimelogDesc();
-        StatistiquesGeneralesDTO statistiquesGeneralesDTO = statistiquesGeneralesMapper.complementStatistiquesGeneralesToStatistiquesGeneralesDTO(
-                statistiquesGenerales,
-                statistiquesGeneralesMapper.statistiquesGeneralesToStatistiquesGeneralesDTO(statistiquesGenerales)
+        Statistiques statistiques = statistiquesRepository.findTopByOrderByTimelogDesc();
+        StatistiquesDTO statistiquesDTO;
+        if (statistiques == null) {
+            statistiquesDTO = new StatistiquesDTO();
+            statistiquesDTO.setNombre_reponses((long) 0);
+            return statistiquesDTO;
+        }
+        statistiquesDTO = statistiquesMapper.complementStatistiquesGeneralesToStatistiquesGeneralesDTO(
+                statistiques,
+                statistiquesMapper.statistiquesGeneralesToStatistiquesGeneralesDTO(statistiques)
         );
-
-        StatistiquesDTO statistiquesDTO = new StatistiquesDTO();
-        statistiquesDTO.setStatistiques_generales(statistiquesGeneralesDTO);
-
         return statistiquesDTO;
     }
 
