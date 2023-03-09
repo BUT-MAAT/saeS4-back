@@ -47,8 +47,6 @@ public class StatistiquesTest {
         StatistiquesDTO statistiques = TestUtil.parseJsonResponse(result, StatistiquesDTO.class);
 
         assertEquals(statistiques.getStatistiques_generales().getNombre_reponses(), NOMBRE_REPONSES);
-        long test = statistiques.getStatistiques_generales().getAliment_plus_choisi().getId_aliment();
-        long tes2 = statistiques.getStatistiques_generales().getAliment_plus_choisi().getId_aliment();
         assertEquals(statistiques.getStatistiques_generales().getAliment_plus_choisi().getId_aliment(), ID_ALIMENT_PLUS_CHOISI);
         assertEquals(statistiques.getStatistiques_generales().getCategorie_plus_choisi().getId_categorie(), ID_CATEGORIE_PLUS_CHOISIE);
     }
