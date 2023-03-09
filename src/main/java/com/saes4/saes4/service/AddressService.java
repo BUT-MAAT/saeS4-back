@@ -6,6 +6,7 @@ import com.saes4.saes4.model.dto.AddressDTO;
 import com.saes4.saes4.model.dto.FeatureCollectionDTO;
 import jakarta.transaction.Transactional;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import java.io.InputStream;
@@ -20,10 +21,15 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class AddressService {
+    private String basicSubstring = "1+Avenue";
 
     public List<AddressDTO> getAddressBySubstring(String substring){
-        if(substring.replaceAll("\\+","").length()<3)
-            return null;
+        if(substring.replaceAll("\\+","").length()<3){
+            String add = substring.substring(substring.length() -1).equals("+") ? "avenue" : "+avenue";
+            substring += add;
+
+        }
+
         try{
             URL url = new URL("https://api-adresse.data.gouv.fr/search/?q="+substring);
             HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -44,8 +50,12 @@ public class AddressService {
                 addressDTOS.add(feature.getProperties());
             return addressDTOS;
         }
+        catch (JSONException e){
+            if(basicSubstring.equals(substring))
+                return null;
+            return getAddressBySubstring(basicSubstring);
+        }
         catch(Exception e){
-            e.printStackTrace();
             return null;
         }
     }
