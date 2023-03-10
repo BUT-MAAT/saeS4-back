@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/address")
+    @RequestMapping("/api/address")
 public class AddressController {
     @Autowired
     AddressService addressService;
-    @GetMapping("/getaddress/{addressSubString}")
+    @GetMapping(value="/getaddress/{addressSubString}",produces = "application/json;charset=UTF-8")
     public List<AddressDTO> getAddressBySubstring(@PathVariable(value = "addressSubString") final String address) {
         return addressService.getAddressBySubstring(address);
     }

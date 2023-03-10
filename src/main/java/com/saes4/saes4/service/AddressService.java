@@ -38,7 +38,7 @@ public class AddressService {
             InputStream responseStream = httpConn.getResponseCode() / 100 == 2
                     ? httpConn.getInputStream()
                     : httpConn.getErrorStream();
-            Scanner s = new Scanner(responseStream).useDelimiter("\\A");
+            Scanner s = new Scanner(responseStream,"UTF-8").useDelimiter("\\A");
             String response = s.hasNext() ? s.next() : "";
             JSONObject jsonResponse = new JSONObject(response.toString());
             JSONArray jsonArray = jsonResponse.getJSONArray("features");
