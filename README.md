@@ -97,12 +97,14 @@ On peut sélectionner si on souhaite voir ou non les valeurs nutritives des alim
 ```
 > Exemple d'appel : http://localhost:9000/api/aliment/by_soussouscategorie/10100?valeurs_nutritives=false
 ---
-## Postal
 
-Endpoint global : `/postal`
+## Address
+
+Endpoint global : `/address`
 
 
-- ### **Get Address :** [/getaddress](http://localhost:9000/api/postal/getaddress/1+Avenue)
+- ### **Get Address :** [/getaddress](http://localhost:9000/api/address/getaddress/1+Avenue)
+
 
 Paramètres : `substring : String`
 
@@ -145,4 +147,5 @@ pour "1+avenue" si la substring est trop petite (inférieur à 3 sans compter le
 ```
 > Exemple d'appel : http://localhost:9000/api/address/getaddress/147+Avenue+De+Versailles
 ---
+
 ```

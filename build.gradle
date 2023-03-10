@@ -33,15 +33,15 @@ dependencies {
 	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.1.Final"
 	implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 	// implementation 'org.mariadb.jdbc:mariadb-java-client:2.4.3'
-	runtimeOnly 'com.h2database:h2'
+//	runtimeOnly 'com.h2database:h2'
 	// runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
 	implementation 'org.json:json:20211205'
 	//mariadb
-	implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
-
+//	implementation 'mysql:mysql-connector-java:8.0.27'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 }
 
 tasks.named('test') {
