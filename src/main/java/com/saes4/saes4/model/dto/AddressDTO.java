@@ -15,7 +15,7 @@ public class AddressDTO {
     private String city;
     private String postcode;
     private String street;
-
+    private String label;
     private int housenumber;
 
 
