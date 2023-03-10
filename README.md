@@ -97,12 +97,12 @@ On peut sélectionner si on souhaite voir ou non les valeurs nutritives des alim
 ```
 > Exemple d'appel : http://localhost:9000/api/aliment/by_soussouscategorie/10100?valeurs_nutritives=false
 ---
-## Postal
+## Address
 
-Endpoint global : `/postal`
+Endpoint global : `/address`
 
 
-- ### **Get Address :** [/getaddress](http://localhost:9000/api/postal/getaddress/1+Avenue)
+- ### **Get Address :** [/getaddress](http://localhost:9000/api/address/getaddress/1+Avenue)
 
 Paramètres : `substring : String`
 
