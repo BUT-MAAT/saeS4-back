@@ -30,11 +30,11 @@ public class AddressTest {
     public void testStringLengthInf3() throws Exception {
         String substring1 = "1";
         String substring2 = "1+";
-        MvcResult result1 = this.restMockMvc.perform(get("/api/postal/getaddress/"+substring1))
+        MvcResult result1 = this.restMockMvc.perform(get("/api/address/getaddress/"+substring1))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        MvcResult result2 = this.restMockMvc.perform(get("/api/postal/getaddress/"+substring2))
+        MvcResult result2 = this.restMockMvc.perform(get("/api/address/getaddress/"+substring2))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -48,11 +48,11 @@ public class AddressTest {
     public void testBadInput() throws Exception{
         String badSubstring = "]]]]";
         String basicInput = "1+Avenue";
-        MvcResult result1 = this.restMockMvc.perform(get("/api/postal/getaddress/"+badSubstring))
+        MvcResult result1 = this.restMockMvc.perform(get("/api/address/getaddress/"+badSubstring))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        MvcResult result2 = this.restMockMvc.perform(get("/api/postal/getaddress/"+basicInput))
+        MvcResult result2 = this.restMockMvc.perform(get("/api/address/getaddress/"+basicInput))
                 .andExpect(status().isOk())
                 .andReturn();
 

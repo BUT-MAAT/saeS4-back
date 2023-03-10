@@ -96,3 +96,53 @@ On peut sélectionner si on souhaite voir ou non les valeurs nutritives des alim
 ]
 ```
 > Exemple d'appel : http://localhost:9000/api/aliment/by_soussouscategorie/10100?valeurs_nutritives=false
+---
+## Postal
+
+Endpoint global : `/postal`
+
+
+- ### **Get Address :** [/getaddress](http://localhost:9000/api/postal/getaddress/1+Avenue)
+
+Paramètres : `substring : String`
+
+Renvoie une liste de 5 adresse (maximum) qui commence par la substring, si l'api ne trouve pas de résultat elle renvoie les résultats 
+pour "1+avenue" si la substring est trop petite (inférieur à 3 sans compter les plus) on rajout automatiquement +Avenue:
+```json
+[
+  {
+    "city": "Paris",
+    "postcode": "75016",
+    "street": "Avenue de Versailles",
+    "housenumber": 147
+  },
+  {
+    "city": "Gagny",
+    "postcode": "93220",
+    "street": "Avenue de Versailles",
+    "housenumber": 147
+  },
+  {
+    "city": "Villepreux",
+    "postcode": "78450",
+    "street": "Avenue de Versailles",
+    "housenumber": 147
+  },
+  {
+    "city": "Rueil-Malmaison",
+    "postcode": "92500",
+    "street": "Avenue de Versailles",
+    "housenumber": 0
+  },
+  {
+    "city": "Thiais",
+    "postcode": "94320",
+    "street": "Avenue de Versailles",
+    "housenumber": 0
+  }
+]
+
+```
+> Exemple d'appel : http://localhost:9000/api/address/getaddress/147+Avenue+De+Versailles
+---
+```
