@@ -2,7 +2,11 @@ package com.saes4.saes4.integration;
 
 
 import com.saes4.saes4.TestUtil;
+import com.saes4.saes4.integration.mock.SondageMock;
 import com.saes4.saes4.model.dto.AlimentDTO;
+import com.saes4.saes4.model.dto.SondageDTO;
+import com.saes4.saes4.model.dto.statistiques.AlimentCountDTO;
+import com.saes4.saes4.model.entities.Sondage;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,6 +28,8 @@ public class AlimentTest {
 
     @Autowired
     private MockMvc restMockMvc;
+    @Autowired
+    private SondageMock sondageMock;
 
     @Test
     @Transactional
@@ -83,5 +90,33 @@ public class AlimentTest {
                 .andExpect(status().isOk())
                 .andReturn();
         return TestUtil.parseJsonArrayResponse(result, AlimentDTO.class);
+    }
+
+    @Test
+    @Transactional
+    //if the user input is bad, the basic input willl be "1+Avenue"
+    public void testGetMostConsumedAlimentsByDepartment() throws Exception{
+        final Long ALIMENTPLUSCHOISI = (long) 25628;
+        List<Sondage> sodages = sondageMock.getSondagesForAlimentByDepartment();
+        MvcResult result = this.restMockMvc.perform(
+                get("/api/aliment/MostConsumedByDepartment/" + "91"))
+                        .andExpect(status().isOk())
+                        .andReturn();
+
+        List<AlimentCountDTO> alimentCountDTO = TestUtil.parseJsonArrayResponse(result, AlimentCountDTO.class);
+        String test = result.getResponse().getContentAsString();
+        assertEquals(ALIMENTPLUSCHOISI,alimentCountDTO.get(0).getId_aliment());
+    }
+    @Test
+    @Transactional
+    public void testGetMostConsumedAlimentsByDepartmentBadInput() throws Exception{
+
+        List<Sondage> sodages = sondageMock.createAndGet3SondagesStatistiques();
+        MvcResult result = this.restMockMvc.perform(
+                        get("/api/aliment/MostConsumedByDepartment/" + "fdp"))
+                .andExpect(status().isOk())
+                .andReturn();
+        List<AlimentDTO> alimentDTOList = TestUtil.parseJsonArrayResponse(result, AlimentDTO.class);
+
     }
 }

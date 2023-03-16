@@ -3,6 +3,7 @@ package com.saes4.saes4.service;
 import com.saes4.saes4.mapper.AlimentMapper;
 import com.saes4.saes4.mapper.SondageMapper;
 import com.saes4.saes4.model.dto.AlimentDTO;
+import com.saes4.saes4.model.dto.statistiques.AlimentCountDTO;
 import com.saes4.saes4.model.entities.Aliment;
 import com.saes4.saes4.model.entities.Sondage;
 import com.saes4.saes4.model.entities.ValeursNutritives;
@@ -49,27 +50,37 @@ public class AlimentService {
         return alimentMapper.alimentToAlimentDTONoValeursNutritivesList(aliments);
     }
 
-    public List<AlimentDTO> getMostConsumedAlimentsByDepartment(String department) {
-        Map<Aliment, Integer> count = new HashMap<>();
-        List<Sondage> sondages = sondageRepository.findAll()
-                .stream()
+    public List<AlimentCountDTO> getMostConsumedAlimentsByDepartment(String department) {
+        List<AlimentCountDTO> count = new LinkedList<>();
+        List<Sondage> sondages = sondageRepository.findAll();
+        sondages.stream()
                 .filter(sondage -> sondage.getCode_postal().substring(0,2).equals((department)))
                 .toList();
+
+
+        Iterator<AlimentCountDTO> it;
+        AlimentCountDTO alimentCountDTO;
+        boolean found = false;
         for(Sondage sondage : sondages){
             for(Aliment aliment : sondage.getListe_aliments()){
-                if(count.containsKey(aliment))
-                    count.put(aliment,count.get(aliment) + 1);
-                else
-                    count.put(aliment,1);
+                it = count.iterator();
+                while(it.hasNext()){
+                    alimentCountDTO = it.next();
+                    if(alimentCountDTO.getId_aliment() == aliment.getId_aliment()) {
+                        alimentCountDTO.setNbChoisi((long) (alimentCountDTO.getNbChoisi() + 1));
+                        found = true;
+                    }
+                }
+                if(!found) {
+                    alimentCountDTO = alimentMapper.alimentToAlimentCountDTONoValeursNutritives(aliment);
+                    alimentCountDTO.setNbChoisi((long) 1);
+                    count.add(alimentCountDTO);
+                }
+                found = false;
             }
         }
-        List<Map.Entry<Aliment,Integer>> sorted =
-                count.entrySet().stream()
-                        .sorted(Map.Entry.comparingByValue()).toList();
-        List<AlimentDTO> result = new LinkedList<>();
-        for(int i = 0 ; i<10 ; i++){
-                result.add(alimentMapper.alimentToAlimentDTONoValeursNutritives(sorted.get(i).getKey()));
-        }
-        return result;
+
+        Collections.sort(count);
+        return count;
     }
 }
