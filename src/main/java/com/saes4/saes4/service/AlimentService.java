@@ -50,37 +50,5 @@ public class AlimentService {
         return alimentMapper.alimentToAlimentDTONoValeursNutritivesList(aliments);
     }
 
-    public List<AlimentCountDTO> getMostConsumedAlimentsByDepartment(String department) {
-        List<AlimentCountDTO> count = new LinkedList<>();
-        List<Sondage> sondages = sondageRepository.findAll();
-        sondages.stream()
-                .filter(sondage -> sondage.getCode_postal().substring(0,2).equals((department)))
-                .toList();
 
-
-        Iterator<AlimentCountDTO> it;
-        AlimentCountDTO alimentCountDTO;
-        boolean found = false;
-        for(Sondage sondage : sondages){
-            for(Aliment aliment : sondage.getListe_aliments()){
-                it = count.iterator();
-                while(it.hasNext()){
-                    alimentCountDTO = it.next();
-                    if(alimentCountDTO.getId_aliment() == aliment.getId_aliment()) {
-                        alimentCountDTO.setNbChoisi((long) (alimentCountDTO.getNbChoisi() + 1));
-                        found = true;
-                    }
-                }
-                if(!found) {
-                    alimentCountDTO = alimentMapper.alimentToAlimentCountDTONoValeursNutritives(aliment);
-                    alimentCountDTO.setNbChoisi((long) 1);
-                    count.add(alimentCountDTO);
-                }
-                found = false;
-            }
-        }
-
-        Collections.sort(count);
-        return count;
-    }
 }

@@ -2,7 +2,9 @@ package com.saes4.saes4.integration;
 
 import com.saes4.saes4.TestUtil;
 import com.saes4.saes4.integration.mock.SondageMock;
+import com.saes4.saes4.model.dto.AlimentDTO;
 import com.saes4.saes4.model.dto.StatistiquesDTO;
+import com.saes4.saes4.model.dto.statistiques.AlimentCountDTO;
 import com.saes4.saes4.model.entities.Sondage;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -48,5 +50,34 @@ public class StatistiquesTest {
         assertEquals(statistiques.getNombre_reponses(), NOMBRE_REPONSES);
         assertEquals(statistiques.getAliment_plus_choisi().getId_aliment(), ID_ALIMENT_PLUS_CHOISI);
         assertEquals(statistiques.getCategorie_plus_choisi().getId_categorie(), ID_CATEGORIE_PLUS_CHOISIE);
+    }
+
+
+    @Test
+    @Transactional
+    //if the user input is bad, the basic input willl be "1+Avenue"
+    public void testGetMostConsumedAlimentsByDepartment() throws Exception{
+        final Long ALIMENTPLUSCHOISI = (long) 25628;
+        List<Sondage> sodages = sondageMock.getSondagesForAlimentByDepartment();
+        MvcResult result = this.restMockMvc.perform(
+                        get("/api/statistiques/MostConsumedByDepartment/91?size=12"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        List<AlimentCountDTO> alimentCountDTO = TestUtil.parseJsonArrayResponse(result, AlimentCountDTO.class);
+        assertEquals(ALIMENTPLUSCHOISI,alimentCountDTO.get(0).getId_aliment());
+        assertEquals(12,alimentCountDTO.size());
+    }
+    @Test
+    @Transactional
+    public void testGetMostConsumedAlimentsByDepartmentBadInput() throws Exception{
+
+        List<Sondage> sodages = sondageMock.createAndGet3SondagesStatistiques();
+        MvcResult result = this.restMockMvc.perform(
+                        get("/api/statistiques/MostConsumedByDepartment/" + "fdp"))
+                .andExpect(status().isOk())
+                .andReturn();
+        List<AlimentDTO> alimentDTOList = TestUtil.parseJsonArrayResponse(result, AlimentDTO.class);
+
     }
 }

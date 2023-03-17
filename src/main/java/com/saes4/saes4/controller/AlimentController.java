@@ -28,10 +28,6 @@ public class AlimentController {
 
     }
 
-    @GetMapping("MostConsumedByDepartment/{id}")
-    public List<AlimentCountDTO> getMostConsumedAlimentsByDepartment(@PathVariable(value="id") final String department){
-        return alimentService.getMostConsumedAlimentsByDepartment(department);
-    }
 
 
 }

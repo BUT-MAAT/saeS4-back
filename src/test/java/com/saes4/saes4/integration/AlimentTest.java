@@ -92,31 +92,5 @@ public class AlimentTest {
         return TestUtil.parseJsonArrayResponse(result, AlimentDTO.class);
     }
 
-    @Test
-    @Transactional
-    //if the user input is bad, the basic input willl be "1+Avenue"
-    public void testGetMostConsumedAlimentsByDepartment() throws Exception{
-        final Long ALIMENTPLUSCHOISI = (long) 25628;
-        List<Sondage> sodages = sondageMock.getSondagesForAlimentByDepartment();
-        MvcResult result = this.restMockMvc.perform(
-                get("/api/aliment/MostConsumedByDepartment/" + "91"))
-                        .andExpect(status().isOk())
-                        .andReturn();
 
-        List<AlimentCountDTO> alimentCountDTO = TestUtil.parseJsonArrayResponse(result, AlimentCountDTO.class);
-        String test = result.getResponse().getContentAsString();
-        assertEquals(ALIMENTPLUSCHOISI,alimentCountDTO.get(0).getId_aliment());
-    }
-    @Test
-    @Transactional
-    public void testGetMostConsumedAlimentsByDepartmentBadInput() throws Exception{
-
-        List<Sondage> sodages = sondageMock.createAndGet3SondagesStatistiques();
-        MvcResult result = this.restMockMvc.perform(
-                        get("/api/aliment/MostConsumedByDepartment/" + "fdp"))
-                .andExpect(status().isOk())
-                .andReturn();
-        List<AlimentDTO> alimentDTOList = TestUtil.parseJsonArrayResponse(result, AlimentDTO.class);
-
-    }
 }
