@@ -83,7 +83,7 @@ public class SondageMock {
         sondage1.setPrenom("prenom1");
         sondage1.setMail("nom1.prenom1@domaine.com");
         sondage1.setVille("ville");
-        sondage1.setCode_postal("00000");
+        sondage1.setCode_postal("91510");
         sondage1.setDate_reponse(new Date());
         List<Aliment> aliments1 = new ArrayList<>();
         aliments1.addAll(alimentMock.getAlimentsBySousSousCategorie(CATEGORIE1, 9));
@@ -98,7 +98,7 @@ public class SondageMock {
         sondage2.setPrenom("prenom2");
         sondage2.setMail("nom2.prenom2@domaine.com");
         sondage2.setVille("ville");
-        sondage2.setCode_postal("00000");
+        sondage2.setCode_postal("91423");
         sondage2.setDate_reponse(new Date());
         List<Aliment> aliments2 = new ArrayList<>();
         aliments2.addAll(alimentMock.getAlimentsBySousSousCategorie(CATEGORIE1, 4));
@@ -114,7 +114,7 @@ public class SondageMock {
         sondage3.setPrenom("prenom3");
         sondage3.setMail("nom3.prenom3@domaine.com");
         sondage3.setVille("ville");
-        sondage3.setCode_postal("00000");
+        sondage3.setCode_postal("91328");
         sondage3.setDate_reponse(new Date());
         List<Aliment> aliments3 = new ArrayList<>();
         aliments3.addAll(alimentMock.getAlimentsBySousSousCategorie(CATEGORIE2, 5));
@@ -125,5 +125,87 @@ public class SondageMock {
         sondages.add(sondage3);
 
         return sondages;
+    }
+    public List<Sondage> getSondagesForAlimentByDepartment() {
+        final Long ALIMENTMAUVAIS = (long) 25623;
+
+        // 16 selections
+        final Long CATEGORIE1 = (long) 10100;
+        // 10 selections
+        final Long CATEGORIE2 = (long) 20101;
+        // 4 selections
+        final Long CATEGORIE3 = (long) 30101;
+        List<Sondage> sondages = get3SondagesStatistiques();
+
+
+
+
+        // Premier sondage
+        Sondage sondage1 = new Sondage();
+        sondage1.setNom("nom1");
+        sondage1.setPrenom("prenom1");
+        sondage1.setMail("nom4.prenom1@domaine.com");
+        sondage1.setVille("ville");
+        sondage1.setCode_postal("75314");
+        sondage1.setDate_reponse(new Date());
+        List<Aliment> aliments1 = new ArrayList<>();
+        aliments1.addAll(alimentMock.getAlimentsBySousSousCategorie(CATEGORIE1, 9));
+        aliments1.add(alimentRepository.findById(ALIMENTMAUVAIS).get());
+        sondage1.setListe_aliments(aliments1);
+
+        sondages.add(sondage1);
+
+        // Deuxieme sondage
+        Sondage sondage2 = new Sondage();
+        sondage2.setNom("nom2");
+        sondage2.setPrenom("prenom2");
+        sondage2.setMail("nom5.prenom2@domaine.com");
+        sondage2.setVille("ville");
+        sondage2.setCode_postal("75314");
+        sondage2.setDate_reponse(new Date());
+        List<Aliment> aliments2 = new ArrayList<>();
+        aliments2.addAll(alimentMock.getAlimentsBySousSousCategorie(CATEGORIE1, 4));
+        aliments2.addAll(alimentMock.getAlimentsBySousSousCategorie(CATEGORIE2, 5));
+        aliments2.add(alimentRepository.findById(ALIMENTMAUVAIS).get());
+        sondage2.setListe_aliments(aliments2);
+
+        sondages.add(sondage2);
+
+        // Troisieme sondage
+        Sondage sondage3 = new Sondage();
+        sondage3.setNom("nom3");
+        sondage3.setPrenom("prenom3");
+        sondage3.setMail("nom6.prenom3@domaine.com");
+        sondage3.setVille("ville");
+        sondage3.setCode_postal("75314");
+        sondage3.setDate_reponse(new Date());
+        List<Aliment> aliments3 = new ArrayList<>();
+        aliments3.addAll(alimentMock.getAlimentsBySousSousCategorie(CATEGORIE2, 5));
+        aliments3.addAll(alimentMock.getAlimentsBySousSousCategorie(CATEGORIE3, 4));
+        aliments3.add(alimentRepository.findById(ALIMENTMAUVAIS).get());
+        sondage3.setListe_aliments(aliments3);
+
+        sondages.add(sondage3);
+
+        Sondage sondage4 = new Sondage();
+        sondage4.setNom("nom3");
+        sondage4.setPrenom("prenom3");
+        sondage4.setMail("nom7.prenom3@domaine.com");
+        sondage4.setVille("ville");
+        sondage4.setCode_postal("75314");
+        sondage4.setDate_reponse(new Date());
+        List<Aliment> aliments4 = new ArrayList<>();
+        aliments4.addAll(alimentMock.getAlimentsBySousSousCategorie(CATEGORIE2, 5));
+        aliments4.addAll(alimentMock.getAlimentsBySousSousCategorie(CATEGORIE3, 4));
+        aliments4.add(alimentRepository.findById(ALIMENTMAUVAIS).get());
+        sondage4.setListe_aliments(aliments4);
+
+        sondages.add(sondage3);
+        for (Sondage sondage : sondages) {
+            sondageRepository.saveAndFlush(sondage);
+            sondageTrigger.triggerStatistiquesGenerales();
+        }
+        return sondages;
+
     }
 }

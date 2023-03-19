@@ -2,6 +2,7 @@ package com.saes4.saes4.controller;
 
 import com.saes4.saes4.mapper.AlimentMapper;
 import com.saes4.saes4.model.dto.AlimentDTO;
+import com.saes4.saes4.model.dto.statistiques.AlimentCountDTO;
 import com.saes4.saes4.service.AlimentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class AlimentController {
         return alimentService.getAlimentsBySousSousCategorie(soussouscategorie_id, valeurs_nutritives);
 
     }
+
 
 
 }

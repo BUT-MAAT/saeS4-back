@@ -60,4 +60,6 @@ public class AddressTest {
         List<AddressDTO> addresses2 = TestUtil.parseJsonArrayResponse(result2, AddressDTO.class);
         assertEquals(addresses1,addresses2);
     }
+
+
 }

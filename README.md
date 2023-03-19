@@ -97,12 +97,14 @@ On peut sélectionner si on souhaite voir ou non les valeurs nutritives des alim
 ```
 > Exemple d'appel : http://localhost:9000/api/aliment/by_soussouscategorie/10100?valeurs_nutritives=false
 ---
+
 ## Address
 
 Endpoint global : `/address`
 
 
 - ### **Get Address :** [/getaddress](http://localhost:9000/api/address/getaddress/1+Avenue)
+
 
 Paramètres : `substring : String`
 
@@ -145,4 +147,28 @@ pour "1+avenue" si la substring est trop petite (inférieur à 3 sans compter le
 ```
 > Exemple d'appel : http://localhost:9000/api/address/getaddress/147+Avenue+De+Versailles
 ---
+
+## Address
+
+Endpoint global : `/statistiques`
+
+
+- ### **Get Most Consumed aliment by department :** [/MostConsumedByDepartment](http://localhost:9000/api/address/getaddress/1+Avenue)
+
+
+Paramètres : `Department : String,
+              [size] : int`
+
+```json
+[
+  {
+    "id_aliment": 25601,
+    "nom_aliment": "Salade de thon et légumes, appertisée",
+    "id_sous_sous_categorie": 10100,
+    "valeurs_nutritives": null,
+    "nbChoisi" : 12
+  }
+]
 ```
+> Exemple d'appel : http://localhost:9000/api/statistiques/MostConsumedByDepartment/91?size=10
+---

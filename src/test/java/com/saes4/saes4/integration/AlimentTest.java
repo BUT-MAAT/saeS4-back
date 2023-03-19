@@ -2,7 +2,11 @@ package com.saes4.saes4.integration;
 
 
 import com.saes4.saes4.TestUtil;
+import com.saes4.saes4.integration.mock.SondageMock;
 import com.saes4.saes4.model.dto.AlimentDTO;
+import com.saes4.saes4.model.dto.SondageDTO;
+import com.saes4.saes4.model.dto.statistiques.AlimentCountDTO;
+import com.saes4.saes4.model.entities.Sondage;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,6 +28,8 @@ public class AlimentTest {
 
     @Autowired
     private MockMvc restMockMvc;
+    @Autowired
+    private SondageMock sondageMock;
 
     @Test
     @Transactional
@@ -84,4 +91,6 @@ public class AlimentTest {
                 .andReturn();
         return TestUtil.parseJsonArrayResponse(result, AlimentDTO.class);
     }
+
+
 }
