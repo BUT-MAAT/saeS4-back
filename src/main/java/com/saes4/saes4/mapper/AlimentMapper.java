@@ -1,6 +1,7 @@
 package com.saes4.saes4.mapper;
 
 import com.saes4.saes4.model.dto.AlimentDTO;
+import com.saes4.saes4.model.dto.statistiques.AlimentCountDTO;
 import com.saes4.saes4.model.dto.statistiques.AlimentStatistiquesDTO;
 import com.saes4.saes4.model.entities.Aliment;
 import com.saes4.saes4.model.entities.ValeursNutritives;
@@ -16,6 +17,10 @@ public interface AlimentMapper {
     @Named("alimentToAlimentDTONoValeursNutritives")
     @Mapping(target = "valeurs_nutritives", ignore = true)
     AlimentDTO alimentToAlimentDTONoValeursNutritives(Aliment aliment);
+
+    @Named("alimentToAlimentCountDTONoValeursNutritives")
+    @Mapping(target = "valeurs_nutritives", ignore = true)
+    AlimentCountDTO alimentToAlimentCountDTONoValeursNutritives(Aliment aliment);
 
     @Named("alimentToAlimentDTOWithValeursNutritives")
     @Mapping(target = "valeurs_nutritives", qualifiedByName = "valeursNutritivesToValeursNutritivesDTO")

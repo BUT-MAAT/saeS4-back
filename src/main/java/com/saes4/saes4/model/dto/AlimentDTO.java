@@ -1,14 +1,12 @@
 package com.saes4.saes4.model.dto;
 
 import com.saes4.saes4.model.entities.ValeursNutritives;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 public class AlimentDTO {
     private Long id_aliment;
 
