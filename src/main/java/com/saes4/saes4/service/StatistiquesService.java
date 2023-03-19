@@ -50,7 +50,7 @@ public class StatistiquesService {
         List<AlimentCountDTO> count = new LinkedList<>();
         List<Sondage> sondages = sondageRepository.findAll();
         sondages = sondages.stream()
-                .filter(sondage -> sondage.getCode_postal().substring(0,2).equals((department)))
+                .filter(sondage -> sondage.getCode_postal().substring(0,department.length()).equals((department)))
                 .toList();
 
 
