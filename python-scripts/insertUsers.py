@@ -37,11 +37,11 @@ def getRandomAliment(food, returnSize):
     return aliments
 
 def generateSurveySQL(firstname,lastname,email,address,city,postal,aliments,date,file):
-    surveyInsert = (f"INSERT INTO SONDAGE (id_personne, nom,prenom,mail,code_postal,ville,date_reponse)"
-                    f" VALUES (NEXT VALUE FOR SONDAGE_SEQ,'{firstname}','{lastname}','{email}','{postal}','{city}','{date}');\n")
+    surveyInsert = (f"INSERT INTO SONDAGE (nom,prenom,mail,code_postal,ville,date_reponse)"
+                    f" VALUES ('{firstname}','{lastname}','{email}','{postal}','{city}','{date}');\n")
     file.write(surveyInsert)
     for aliment in aliments:
-        responseInsert = f"INSERT INTO CHOIX_ALIMENTS_SONDAGE (id_personne,id_aliment) VALUES ((SELECT BASE_VALUE FROM INFORMATION_SCHEMA.SEQUENCES WHERE SEQUENCE_NAME = 'SONDAGE_SEQ') - 1 ,{aliment});\n"
+        responseInsert = f"INSERT INTO CHOIX_ALIMENTS_SONDAGE (id_personne,id_aliment) VALUES ((SELECT MAX(id_personne) FROM SONDAGE) ,{aliment});\n"
         file.write(responseInsert)
     file.write("\n")
 
