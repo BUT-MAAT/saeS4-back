@@ -3492,6 +3492,8 @@ CREATE TABLE `sondage` (
   `prenom` varchar(255) DEFAULT NULL,
   `ville` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+ALTER TABLE `sondage` ADD INDEX `id_personne_index` (`id_personne`);
+ALTER TABLE `sondage` MODIFY COLUMN `id_personne` BIGINT(20) NOT NULL AUTO_INCREMENT;
 
 -- --------------------------------------------------------
 
