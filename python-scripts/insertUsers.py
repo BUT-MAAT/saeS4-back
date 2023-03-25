@@ -33,7 +33,7 @@ def getRandomAliment(food, returnSize):
     aliments = []
     number = len(food)
     for i in range(returnSize):
-        aliments.append(food[random.randint(0,number)]['id_aliment'])
+        aliments.append(food[random.randint(0,number-1)]['id_aliment'])
     return aliments
 
 def generateSurveySQL(firstname,lastname,email,address,city,postal,aliments,date,file):
@@ -54,6 +54,7 @@ def main():
         del item["valeurs_nutritives"]
     with open(FILE_NAME, "w") as f:
         for i in range(NUMBER_OF_PERSON):
+            print(f"{i}/{NUMBER_OF_PERSON}")
             # Requesting french-sounding names through an API
             r = requests.get(url = "https://api.namefake.com/french-france/")
             
