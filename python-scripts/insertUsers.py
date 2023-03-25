@@ -46,15 +46,11 @@ def generateSurveySQL(firstname,lastname,email,address,city,postal,aliments,date
 
 def main():
     r = requests.get(url=ALIMENT_API_LINK)
-    food = r.json()
-    print(type(food))
-    for item in food:
-        del item["nom_aliment"]
-        del item["id_sous_sous_categorie"]
-        del item["valeurs_nutritives"]
+    food = [d['id_aliment'] for d in r.json()]
+
     with open(FILE_NAME, "w") as f:
         for i in range(NUMBER_OF_PERSON):
-            print(f"{i}/{NUMBER_OF_PERSON}")
+            print(f"{i+1}/{NUMBER_OF_PERSON}")
             # Requesting french-sounding names through an API
             r = requests.get(url = "https://api.namefake.com/french-france/")
 
