@@ -34,6 +34,7 @@ def getRandomAliment(food, returnSize):
     number = len(food)
     return random.sample(food,returnSize)
 
+
 def generateSurveySQL(firstname,lastname,email,address,city,postal,aliments,date,file):
     surveyInsert = (f"INSERT INTO SONDAGE (nom,prenom,mail,code_postal,ville,date_reponse)"
                     f" VALUES ('{firstname}','{lastname}','{email}','{postal}','{city}','{date}');\n")
@@ -46,6 +47,7 @@ def generateSurveySQL(firstname,lastname,email,address,city,postal,aliments,date
 def main():
     r = requests.get(url=ALIMENT_API_LINK)
     food = r.json()
+    print(type(food))
     for item in food:
         del item["nom_aliment"]
         del item["id_sous_sous_categorie"]
@@ -55,7 +57,7 @@ def main():
             print(f"{i}/{NUMBER_OF_PERSON}")
             # Requesting french-sounding names through an API
             r = requests.get(url = "https://api.namefake.com/french-france/")
-            
+
             person = r.json()
             name = person['name'].split()
             firstname = name[0]
