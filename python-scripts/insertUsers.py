@@ -32,9 +32,7 @@ if(len(sys.argv) == 3):
 def getRandomAliment(food, returnSize):
     aliments = []
     number = len(food)
-    for i in range(returnSize):
-        aliments.append(food[random.randint(0,number-1)]['id_aliment'])
-    return aliments
+    return random.sample(food,returnSize)
 
 def generateSurveySQL(firstname,lastname,email,address,city,postal,aliments,date,file):
     surveyInsert = (f"INSERT INTO SONDAGE (nom,prenom,mail,code_postal,ville,date_reponse)"
