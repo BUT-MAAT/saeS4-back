@@ -25,6 +25,9 @@ public class SondageService {
     private SondageTrigger sondageTrigger;
 
     public SondageDTO createSondage(SondageDTO reponse) {
+        if (reponse.getDate_reponse() == null) {
+            reponse.setDate_reponse(new Date());
+        }
         Sondage reponseEntity = sondageMapper.sondageDTOToSondage(reponse);
         sondageRepository.save(reponseEntity);
         sondageTrigger.triggerStatistiquesGenerales();
