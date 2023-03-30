@@ -13,10 +13,13 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.print.AttributeException;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @Transactional
@@ -47,6 +50,11 @@ public class StatistiquesService {
         return statistiquesDTO;
     }
     public List<AlimentCountDTO> getMostConsumedAlimentsByDepartment(String department,Long size) {
+        final String pattern = "([0-8]{1}[0-9]{1})|([9]{1}[0-5]{1})|(97[1-46])";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(department);
+        if(!m.matches())
+            return new LinkedList<>();
         List<AlimentCountDTO> count = new LinkedList<>();
         List<Sondage> sondages = sondageRepository.findAll();
         sondages = sondages.stream()
