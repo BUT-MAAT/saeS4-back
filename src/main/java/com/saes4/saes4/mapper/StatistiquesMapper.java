@@ -12,8 +12,8 @@ public interface StatistiquesMapper {
     @Named("statistiquesGeneralesToStatistiquesGeneralesDTO")
     @Mapping(target = "aliment_plus_choisi", qualifiedByName = "alimentToAlimentStatistiquesDTO")
     @Mapping(target = "categorie_plus_choisi", qualifiedByName = "categorieToCategorieStatistiquesDTO")
-//    @Mapping(target = "nb_selections_aliment", ignore = true)
-//    @Mapping(target = "nb_selections_categorie", ignore = true)
+    @Mapping(target = "aliments_top_10", ignore = true)
+    @Mapping(target = "categories_triees", ignore = true)
     StatistiquesDTO statistiquesGeneralesToStatistiquesGeneralesDTO(Statistiques statistiques);
 
     // Précision du mapping de base
@@ -21,10 +21,12 @@ public interface StatistiquesMapper {
         dto.getAliment_plus_choisi().setNb_selections(
                 statistiques.getNb_selections_aliment()
         );
+        dto.getAliment_plus_choisi().setRank(1);
 
         dto.getCategorie_plus_choisi().setNb_selections(
                 statistiques.getNb_selections_categorie()
         );
+        dto.getCategorie_plus_choisi().setRank(1);
 
         return dto;
     }

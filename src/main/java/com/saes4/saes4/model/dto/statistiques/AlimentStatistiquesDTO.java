@@ -10,6 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AlimentStatistiquesDTO {
 
+    private Integer rank;
+
     private Long id_aliment;
 
     private String nom_aliment;

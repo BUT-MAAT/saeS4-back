@@ -45,4 +45,8 @@ public interface AlimentMapper {
     @Named("alimentToAlimentStatistiquesDTO")
     @Mapping(target = "nb_selections", ignore = true)
     AlimentStatistiquesDTO alimentToAlimentStatistiquesDTO(Aliment aliment);
+
+    @Named("alimentToAlimentStatistiquesDTOList")
+    @IterableMapping(qualifiedByName="alimentToAlimentStatistiquesDTO")
+    List<AlimentStatistiquesDTO> alimentToAlimentStatistiquesDTOList(List<Aliment> aliments);
 }
