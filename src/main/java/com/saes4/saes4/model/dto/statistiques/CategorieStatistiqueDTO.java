@@ -10,6 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CategorieStatistiqueDTO {
 
+    private Integer rank;
+
     private Long  id_categorie;
 
     private String nom_categorie;

@@ -25,4 +25,8 @@ public interface CategorieMapper {
     @Named("categorieToCategorieStatistiquesDTO")
     @Mapping(target = "nb_selections", ignore = true)
     CategorieStatistiqueDTO categorieToCategorieStatistiquesDTO(Categorie categorie);
+
+    @Named("categorieToCategorieStatistiquesDTOList")
+    @IterableMapping(qualifiedByName="categorieToCategorieStatistiquesDTO")
+    List<CategorieStatistiqueDTO> categorieToCategorieStatistiquesDTOList(List<Categorie> categories);
 }
