@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,4 +23,8 @@ public class StatistiquesDTO {
     private AlimentStatistiquesDTO aliment_plus_choisi;
 
     private CategorieStatistiqueDTO categorie_plus_choisi;
+
+    private List<AlimentStatistiquesDTO> aliments_top_10;
+
+    private List<CategorieStatistiqueDTO> categories_triees;
 }
