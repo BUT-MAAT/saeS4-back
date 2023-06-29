@@ -148,7 +148,7 @@ pour "1+avenue" si la substring est trop petite (inférieur à 3 sans compter le
 > Exemple d'appel : http://localhost:9000/api/address/getaddress/147+Avenue+De+Versailles
 ---
 
-## Address
+## Statistiques
 
 Endpoint global : `/statistiques`
 
